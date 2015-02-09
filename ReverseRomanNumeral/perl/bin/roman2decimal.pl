@@ -6,8 +6,15 @@ use strict;
 sub roman2decimal {
 	my ($roman) = @_;
 	my $decimal = 0;
-	foreach (split //, $roman) {
-		$decimal += digit2decimal($_);
+	my $previous = 0;
+	foreach my $roman_digit (reverse split //, $roman) {
+		my $decimal_digit = digit2decimal($roman_digit);
+		if ($decimal_digit < $previous) {
+			$decimal -= $decimal_digit;
+		} else {
+			$decimal += $decimal_digit;
+		}
+		$previous = $decimal_digit;
 	}
 	return $decimal;
 }

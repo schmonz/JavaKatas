@@ -17,3 +17,8 @@ Feature: Convert Roman numerals to decimal
     Given the Roman numeral VI
     When it is converted to decimal
     Then its value is 6
+
+  Scenario: IV
+    Given the Roman numeral IV
+    When it is converted to decimal
+    Then its value is 4
