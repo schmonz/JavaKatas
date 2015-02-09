@@ -37,3 +37,18 @@ Feature: Convert Roman numerals to decimal
     Given the Roman numeral XCIX
     When it is converted to decimal
     Then its value is 99
+
+  Scenario: MCMXC
+    Given the Roman numeral MCMXC
+    When it is converted to decimal
+    Then its value is 1990
+
+  Scenario: MMVIII
+    Given the Roman numeral MMVIII
+    When it is converted to decimal
+    Then its value is 2008
+
+  Scenario: XLVII
+    Given the Roman numeral XLVII
+    When it is converted to decimal
+    Then its value is 47
