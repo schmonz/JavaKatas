@@ -12,3 +12,8 @@ Feature: Convert Roman numerals to decimal
     Given the Roman numeral II
     When it is converted to decimal
     Then its value is 2
+
+  Scenario: VI
+    Given the Roman numeral VI
+    When it is converted to decimal
+    Then its value is 6
