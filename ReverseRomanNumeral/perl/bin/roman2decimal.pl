@@ -24,6 +24,8 @@ sub digit2decimal {
 	my %known_digits = (
 		I	=> 1,
 		V	=> 5,
+		X	=> 10,
+		C	=> 100,
 	);
 	return 0 unless exists $known_digits{$roman_digit};
 	return $known_digits{$roman_digit};

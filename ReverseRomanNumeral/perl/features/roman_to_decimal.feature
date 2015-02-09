@@ -22,3 +22,18 @@ Feature: Convert Roman numerals to decimal
     Given the Roman numeral IV
     When it is converted to decimal
     Then its value is 4
+
+  Scenario: IX
+    Given the Roman numeral IX
+    When it is converted to decimal
+    Then its value is 9
+
+  Scenario: XC
+    Given the Roman numeral XC
+    When it is converted to decimal
+    Then its value is 90
+
+  Scenario: XCIX
+    Given the Roman numeral XCIX
+    When it is converted to decimal
+    Then its value is 99
