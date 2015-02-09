@@ -5,6 +5,7 @@ use strict;
 
 sub roman2decimal {
 	my ($roman) = @_;
+	return length $roman;
 }
 
 roman2decimal(@ARGV) unless caller();

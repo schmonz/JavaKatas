@@ -7,3 +7,8 @@ Feature: Convert Roman numerals to decimal
     Given the Roman numeral I
     When it is converted to decimal
     Then its value is 1
+
+  Scenario: II
+    Given the Roman numeral II
+    When it is converted to decimal
+    Then its value is 2
