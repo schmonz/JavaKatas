@@ -28,7 +28,9 @@ public class ReverseRoman {
 		knownDigits.put('I',  1);
 		knownDigits.put('V',  5);
 		knownDigits.put('X',  10);
+		knownDigits.put('L',  50);
 		knownDigits.put('C',  100);
+		knownDigits.put('M',  1000);
 
 		if (knownDigits.containsKey(romanDigit)) {
 			return knownDigits.get(romanDigit);
