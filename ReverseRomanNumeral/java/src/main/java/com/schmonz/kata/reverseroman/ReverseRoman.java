@@ -8,11 +8,18 @@ public class ReverseRoman {
 	public int roman2decimal(String roman) {
 		int decimal = 0;
 
-		char[] romanDigits = roman.toCharArray();
-		for (char thisDigit : romanDigits) {
-			decimal += digit2decimal(thisDigit);
+		int previous = 0;
+		char[] reversedRomanDigits = new StringBuffer(roman).reverse().toString().toCharArray();
+		for (char thisDigit : reversedRomanDigits) {
+			int decimalDigit = digit2decimal(thisDigit);
+			if (decimalDigit < previous) {
+				decimal -= decimalDigit;
+			} else {
+				decimal += decimalDigit;
+			}
+			previous = decimalDigit;
 		}
-	
+
 		return decimal;
 	}
 
