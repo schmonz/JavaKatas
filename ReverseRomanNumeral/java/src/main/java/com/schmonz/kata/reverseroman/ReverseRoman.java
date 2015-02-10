@@ -27,6 +27,8 @@ public class ReverseRoman {
 		Map<Character, Integer> knownDigits = new HashMap<Character, Integer>();
 		knownDigits.put('I',  1);
 		knownDigits.put('V',  5);
+		knownDigits.put('X',  10);
+		knownDigits.put('C',  100);
 
 		if (knownDigits.containsKey(romanDigit)) {
 			return knownDigits.get(romanDigit);
