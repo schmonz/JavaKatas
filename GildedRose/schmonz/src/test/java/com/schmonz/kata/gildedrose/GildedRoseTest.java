@@ -24,14 +24,36 @@ public class GildedRoseTest {
 		assertEquals(6, new GildedRose().getItems().size());
 	}
 	
+	@Test
+	public void canInspectItemSellIn() {
+		assertNotNull(new GildedRose().getItems().get(0).getSellIn());
+	}
+	
+	@Test
+	public void canInspectItemQuality() {
+		assertNotNull(new GildedRose().getItems().get(0).getQuality());
+	}
+	
+	@Test
+	public void canUpdateQualityAndSellIn() {
+		Item firstItem = new GildedRose().getItems().get(0);
+		assertEquals(9, firstItem.getSellIn());
+		assertEquals(19, firstItem.getQuality());
+		
+		GildedRose.updateQuality();
+		
+		assertEquals(8, firstItem.getSellIn());
+		assertEquals(18, firstItem.getQuality());
+	}
+	
 	/* TEST LIST:
-	 * can inspect sellIn
-	 * can inspect quality
-	 * can update sellIn and quality (so our system tracks reality)
+	 * XXX
 	 */
 	
 	/* MENTAL STACK:
 	 * extract initializeInventory() from main()
+	 * deconstruct updateQuality()
+	 * stop needing superHackyStartup()
 	 */
 }
 
@@ -39,8 +61,6 @@ public class GildedRoseTest {
 
 # Background
 
-- Items have a "sellIn" (number of days left to sell it)
-- Items have a "quality" (how valuable it is)
 - Every COB, for every item, the system reduces quality and sellIn
 	- Except "Aged Brie" increases in quality
 	- And "Backstage passes" increases in quality, thus:
