@@ -3,52 +3,18 @@ Feature: Convert Roman numerals to decimal
   I want to convert Roman numerals to ordinary numbers
   So that I can understand them
 
-  Scenario: I
-    Given the Roman numeral I
+  Scenario: Convert Roman to decimal
+    Given the Roman numeral <Roman>
     When it is converted to decimal
-    Then its value is 1
-
-  Scenario: II
-    Given the Roman numeral II
-    When it is converted to decimal
-    Then its value is 2
-
-  Scenario: VI
-    Given the Roman numeral VI
-    When it is converted to decimal
-    Then its value is 6
-
-  Scenario: IV
-    Given the Roman numeral IV
-    When it is converted to decimal
-    Then its value is 4
-
-  Scenario: IX
-    Given the Roman numeral IX
-    When it is converted to decimal
-    Then its value is 9
-
-  Scenario: XC
-    Given the Roman numeral XC
-    When it is converted to decimal
-    Then its value is 90
-
-  Scenario: XCIX
-    Given the Roman numeral XCIX
-    When it is converted to decimal
-    Then its value is 99
-
-  Scenario: MCMXC
-    Given the Roman numeral MCMXC
-    When it is converted to decimal
-    Then its value is 1990
-
-  Scenario: MMVIII
-    Given the Roman numeral MMVIII
-    When it is converted to decimal
-    Then its value is 2008
-
-  Scenario: XLVII
-    Given the Roman numeral XLVII
-    When it is converted to decimal
-    Then its value is 47
+    Then its value is <Arabic>
+    Examples:
+    | Roman  | Arabic |
+    | I      | 1      |
+    | II     | 2      |
+    | VI     | 6      |
+    | IV     | 4      |
+    | IX     | 9      |
+    | XC     | 90     |
+    | MCMXC  | 1990   |
+    | MMVIII | 2008   |
+    | XLVII  | 47     |
