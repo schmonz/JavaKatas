@@ -1,3 +1,5 @@
+package com.schmonz.kata.gildedrose;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,3 +1,4 @@
+package com.schmonz.kata.gildedrose;
 
 public class Item {
     public String name;
