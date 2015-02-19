@@ -27,6 +27,8 @@ public class GildedRoseTest {
 		expectedItems.add(new Item("Conjured Mana Cake", 3, 6));
 
 		List<Item> initialItems = new GildedRose().getItems();
+		assertNotNull(initialItems);
+		assertEquals(expectedItems.size(), initialItems.size());
 		
 		for (int i = 0; i < expectedItems.size(); i++) {
 			Item expected = expectedItems.get(i);
@@ -40,26 +42,6 @@ public class GildedRoseTest {
 		}
 	}
 
-	@Test
-	public void canInitializeInventory() {
-		assertNotNull(new GildedRose().getItems());
-	}
-	
-	@Test
-	public void canEnumerateInventory() {
-		assertEquals(6, new GildedRose().getItems().size());
-	}
-	
-	@Test
-	public void canInspectItemSellIn() {
-		assertNotNull(new GildedRose().getItems().get(0).getSellIn());
-	}
-	
-	@Test
-	public void canInspectItemQuality() {
-		assertNotNull(new GildedRose().getItems().get(0).getQuality());
-	}
-	
 	@Test
 	public void canUpdateQualityAndSellIn() {
 		Item firstItem = new GildedRose().getItems().get(0);
