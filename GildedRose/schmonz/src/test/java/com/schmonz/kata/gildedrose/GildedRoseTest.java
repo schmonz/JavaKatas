@@ -2,9 +2,10 @@ package com.schmonz.kata.gildedrose;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.junit.Test;
@@ -12,9 +13,31 @@ import org.junit.Test;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GildedRoseTest {
 	
-	@BeforeClass
-	public static void superHackyStartup() {
+	@Before
+	public void superHackySetup() {
+		GildedRose.inTestMode = true;
 		GildedRose.main(null);
+	}
+
+	@Test
+	public void a1_initialState() {
+		List<Item> expectedItems = new ArrayList<Item>();
+		expectedItems.add(new Item("+5 Dexterity Vest", 10, 20));
+		expectedItems.add(new Item("Aged Brie", 2, 0));
+		expectedItems.add(new Item("Elixir of the Mongoose", 5, 7));
+		expectedItems.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
+		expectedItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
+		expectedItems.add(new Item("Conjured Mana Cake", 3, 6));
+
+		List<Item> initialItems = new GildedRose().getItems();
+		
+		for (int i = 0; i < expectedItems.size(); i++) {
+			Item expected = expectedItems.get(i);
+			Item actual = initialItems.get(i);
+			assertEquals(expected.getName(), actual.getName());
+			assertEquals(expected.getSellIn(), actual.getSellIn());
+			assertEquals(expected.getQuality(), actual.getQuality());
+		}
 	}
 
 	@Test
@@ -40,38 +63,40 @@ public class GildedRoseTest {
 	@Test
 	public void canUpdateQualityAndSellIn() {
 		Item firstItem = new GildedRose().getItems().get(0);
-		assertEquals(9, firstItem.getSellIn());
-		assertEquals(19, firstItem.getQuality());
 		
 		GildedRose.updateQuality();
 		
-		assertEquals(8, firstItem.getSellIn());
-		assertEquals(18, firstItem.getQuality());
+		assertEquals(9, firstItem.getSellIn());
+		assertEquals(19, firstItem.getQuality());
+	}
+	
+	private void updateBeforeSellBy(Item item, int sellInChange, int qualityChange) {
+		int previousSellIn = item.getSellIn();
+		int previousQuality = item.getQuality();
+		GildedRose.updateQuality();
+		assertEquals(previousSellIn + sellInChange, item.getSellIn());
+		assertEquals(previousQuality + qualityChange, item.getQuality());
 	}
 	
 	@Test
 	public void canUpdateQualityAndSellInForAgedBrieNeverExceeding50() {
 		Item theBrie = findTheBrie(new GildedRose().getItems());
-		int previousQuality;
-		int currentQuality;
 
-		assertEquals(0, theBrie.getSellIn());
-		assertEquals(2, previousQuality = theBrie.getQuality());
-		
-		GildedRose.updateQuality();
+		updateBeforeSellBy(theBrie, -1, 1);
+		updateBeforeSellBy(theBrie, -1, 1);
+		updateBeforeSellBy(theBrie, -1, 2);
 		
 		assertEquals(-1, theBrie.getSellIn());
-		assertEquals(4, currentQuality = theBrie.getQuality());
+		assertEquals(4, theBrie.getQuality());
 		
-		int qualityImprovementRate = currentQuality - previousQuality;
+		int expectedQualityImprovementRate = 2;
 		int EXPECTED_MAX_QUALITY = 50;
-		int iterationsToTryExceedingMaxQuality = 1 + EXPECTED_MAX_QUALITY / qualityImprovementRate;
+		int iterationsToTryExceedingMaxQuality = 1 + EXPECTED_MAX_QUALITY / expectedQualityImprovementRate;
 		for (int i = 0; i <= iterationsToTryExceedingMaxQuality; i++) {
 			GildedRose.updateQuality();
 			assertTrue(theBrie.getQuality() <= EXPECTED_MAX_QUALITY);
 		}
 		
-		// XXX seems like Brie _improves_ twice as fast after sell-by date
 	}
 	
 	private Item findTheBrie(List<Item> items) {
@@ -86,8 +111,6 @@ public class GildedRoseTest {
 	/* TEST LIST:
 	 * For all items, quality is not negative to begin with
 	 * For all items, quality is still not negative after this update
-	 * "Aged Brie" _increases_ in quality on each update
-	 * "Aged Brie"'s quality never goes over 50
 	 * For all items, quality never moves over 50
 	 * 
 	 * "Backstage passes" _increases_ in quality:

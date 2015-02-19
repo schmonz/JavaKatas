@@ -6,6 +6,7 @@ import java.util.List;
 public class GildedRose {
 
 	private static List<Item> items = null;
+	static boolean inTestMode = false;
 
 	public static void main(String[] args) {
 		System.out.println("OMGHAI!");
@@ -18,7 +19,9 @@ public class GildedRose {
 		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
 		items.add(new Item("Conjured Mana Cake", 3, 6));
 
-		updateQuality();
+		if (!inTestMode) {
+			updateQuality();
+		}
 	}
 
 	public static void updateQuality() {
