@@ -5,8 +5,11 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 import org.junit.Test;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GildedRoseTest {
 	
 	@BeforeClass
@@ -44,12 +47,10 @@ public class GildedRoseTest {
 		
 		assertEquals(8, firstItem.getSellIn());
 		assertEquals(18, firstItem.getQuality());
-		
-		canUpdateAgedBrieAndQualityNeverExceeds50();
 	}
 	
-	// XXX @Test
-	private void canUpdateAgedBrieAndQualityNeverExceeds50() {
+	@Test
+	public void canUpdateQualityAndSellInForAgedBrieNeverExceeding50() {
 		Item theBrie = findTheBrie(new GildedRose().getItems());
 		int previousQuality;
 		int currentQuality;
