@@ -6,11 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.runners.MethodSorters;
 import org.junit.Test;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GildedRoseTest {
 	
 	@Before
@@ -20,7 +17,7 @@ public class GildedRoseTest {
 	}
 
 	@Test
-	public void a1_initialState() {
+	public void initialState() {
 		List<Item> expectedItems = new ArrayList<Item>();
 		expectedItems.add(new Item("+5 Dexterity Vest", 10, 20));
 		expectedItems.add(new Item("Aged Brie", 2, 0));
@@ -34,9 +31,12 @@ public class GildedRoseTest {
 		for (int i = 0; i < expectedItems.size(); i++) {
 			Item expected = expectedItems.get(i);
 			Item actual = initialItems.get(i);
+			
 			assertEquals(expected.getName(), actual.getName());
 			assertEquals(expected.getSellIn(), actual.getSellIn());
 			assertEquals(expected.getQuality(), actual.getQuality());
+			
+			assertTrue(actual.getQuality() >= 0);
 		}
 	}
 
@@ -109,7 +109,6 @@ public class GildedRoseTest {
 	}
 	
 	/* TEST LIST:
-	 * For all items, quality is not negative to begin with
 	 * For all items, quality is still not negative after this update
 	 * For all items, quality never moves over 50
 	 * 
