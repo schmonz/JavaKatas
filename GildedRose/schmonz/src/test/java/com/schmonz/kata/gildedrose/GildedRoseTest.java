@@ -52,14 +52,6 @@ public class GildedRoseTest {
 		assertEquals(19, firstItem.getQuality());
 	}
 	
-	private void updateBeforeSellBy(Item item, int sellInChange, int qualityChange) {
-		int previousSellIn = item.getSellIn();
-		int previousQuality = item.getQuality();
-		GildedRose.updateQuality();
-		assertEquals(previousSellIn + sellInChange, item.getSellIn());
-		assertEquals(previousQuality + qualityChange, item.getQuality());
-	}
-	
 	@Test
 	public void canUpdateQualityAndSellInForAgedBrieNeverExceeding50() {
 		Item theBrie = findTheBrie(new GildedRose().getItems());
@@ -78,22 +70,59 @@ public class GildedRoseTest {
 			GildedRose.updateQuality();
 			assertTrue(theBrie.getQuality() <= EXPECTED_MAX_QUALITY);
 		}
+	}
+	
+	@Test
+	public void cannotUpdateQualityTooHighOrTooLow() {
+		List<Item> items = new GildedRose().getItems();
 		
+		for (int i = 0; i < 100; i++) {
+			GildedRose.updateQuality();
+			for (Item item : items) {
+				if (isSulfuras(item)) {
+					assertTrue(item.getQuality() == 80);
+				} else {
+					assertTrue(item.getQuality() <= 50);
+					assertTrue(item.getQuality() >= 0);
+				}
+			}
+		}
+	}
+	
+	private void updateBeforeSellBy(Item item, int sellInChange, int qualityChange) {
+		int previousSellIn = item.getSellIn();
+		int previousQuality = item.getQuality();
+		GildedRose.updateQuality();
+		assertEquals(previousSellIn + sellInChange, item.getSellIn());
+		assertEquals(previousQuality + qualityChange, item.getQuality());
 	}
 	
 	private Item findTheBrie(List<Item> items) {
 		for (Item each : items) {
-			if ("Aged Brie".equals(each.name)) {
+			if (isBrie(each)) {
 				return each;
 			}
 		}
 		return null;
 	}
 	
+	private boolean isBrie(Item item) {
+		if ("Aged Brie".equals(item.name)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private boolean isSulfuras(Item item) {
+		if ("Sulfuras, Hand of Ragnaros".equals(item.name)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	/* TEST LIST:
-	 * For all items, quality is still not negative after this update
-	 * For all items, quality never moves over 50
-	 * 
 	 * "Backstage passes" _increases_ in quality:
 	 * - With 10 days or less, quality increases by 2
 	 * - With 5 days or less, quality increases by 3
