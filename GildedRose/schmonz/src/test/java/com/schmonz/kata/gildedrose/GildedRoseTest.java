@@ -44,10 +44,55 @@ public class GildedRoseTest {
 		
 		assertEquals(8, firstItem.getSellIn());
 		assertEquals(18, firstItem.getQuality());
+		
+		canUpdateAgedBrieAndQualityNeverExceeds50();
+	}
+	
+	// XXX @Test
+	private void canUpdateAgedBrieAndQualityNeverExceeds50() {
+		Item theBrie = findTheBrie(new GildedRose().getItems());
+		int previousQuality;
+		int currentQuality;
+
+		assertEquals(0, theBrie.getSellIn());
+		assertEquals(2, previousQuality = theBrie.getQuality());
+		
+		GildedRose.updateQuality();
+		
+		assertEquals(-1, theBrie.getSellIn());
+		assertEquals(4, currentQuality = theBrie.getQuality());
+		
+		int qualityImprovementRate = currentQuality - previousQuality;
+		int EXPECTED_MAX_QUALITY = 50;
+		int iterationsToTryExceedingMaxQuality = 1 + EXPECTED_MAX_QUALITY / qualityImprovementRate;
+		for (int i = 0; i <= iterationsToTryExceedingMaxQuality; i++) {
+			GildedRose.updateQuality();
+			assertTrue(theBrie.getQuality() <= EXPECTED_MAX_QUALITY);
+		}
+		
+		// XXX seems like Brie _improves_ twice as fast after sell-by date
+	}
+	
+	private Item findTheBrie(List<Item> items) {
+		for (Item each : items) {
+			if ("Aged Brie".equals(each.name)) {
+				return each;
+			}
+		}
+		return null;
 	}
 	
 	/* TEST LIST:
-	 * XXX
+	 * For all items, quality is not negative to begin with
+	 * For all items, quality is still not negative after this update
+	 * "Aged Brie" _increases_ in quality on each update
+	 * "Aged Brie"'s quality never goes over 50
+	 * For all items, quality never moves over 50
+	 * 
+	 * "Backstage passes" _increases_ in quality:
+	 * - With 10 days or less, quality increases by 2
+	 * - With 5 days or less, quality increases by 3
+	 * - After the concert, quality drops to 0
 	 */
 	
 	/* MENTAL STACK:
@@ -61,16 +106,7 @@ public class GildedRoseTest {
 
 # Background
 
-- Every COB, for every item, the system reduces quality and sellIn
-	- Except "Aged Brie" increases in quality
-	- And "Backstage passes" increases in quality, thus:
-		- With 10 days or less, quality increases by 2
-		- With 5 days or less, quality increases by 3
-		- After the concert, quality drops to 0
 - After an item's sell-by date, quality degrades twice as fast
-- An item's quality is never:
-	- negative
-	- more than 50
 - Items which are "legendary" never:
 	- need to be sold
 	- decrease in quality
@@ -86,6 +122,6 @@ public class GildedRoseTest {
 
 # Assignment
 
-- Track "conjured" items, whose quality degrades twice as fast
+- Track "conjured" items, whose quality degrades twice as fast to begin with
 
 */
