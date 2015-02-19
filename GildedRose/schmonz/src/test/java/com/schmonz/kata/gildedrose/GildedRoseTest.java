@@ -56,7 +56,7 @@ public class GildedRoseTest {
 	}
 	
 	@Test
-	public void canUpdateQualityAndSellInForAgedBrieNeverExceeding50() {
+	public void canUpdateAgedBrie() {
 		Item theBrie = findTheBrie(new GildedRose().getItems());
 
 		updateBeforeSellBy(theBrie, -1, 1);
@@ -65,20 +65,13 @@ public class GildedRoseTest {
 		
 		assertEquals(-1, theBrie.getSellIn());
 		assertEquals(4, theBrie.getQuality());
-		
-		int expectedQualityImprovementRate = 2;
-		int iterationsToTryExceedingMaxQuality = 1 + EXPECTED_MAX_QUALITY / expectedQualityImprovementRate;
-		for (int i = 0; i <= iterationsToTryExceedingMaxQuality; i++) {
-			GildedRose.updateQuality();
-			assertTrue(theBrie.getQuality() <= EXPECTED_MAX_QUALITY);
-		}
 	}
 	
 	@Test
 	public void cannotUpdateQualityTooHighOrTooLow() {
 		List<Item> items = new GildedRose().getItems();
 		
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 2 * EXPECTED_MAX_QUALITY; i++) {
 			GildedRose.updateQuality();
 			for (Item item : items) {
 				if (isSulfuras(item)) {
