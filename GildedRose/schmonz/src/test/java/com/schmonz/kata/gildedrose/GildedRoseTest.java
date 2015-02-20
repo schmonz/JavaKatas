@@ -145,27 +145,15 @@ public class GildedRoseTest {
 	}
 	
 	private boolean isBrie(Item item) {
-		if ("Aged Brie".equals(item.name)) {
-			return true;
-		} else {
-			return false;
-		}
+		return "Aged Brie".equals(item.name);
 	}
 	
 	private boolean isPasses(Item item) {
-		if ("Backstage passes to a TAFKAL80ETC concert".equals(item.name)) {
-			return true;
-		} else {
-			return false;
-		}
+		return "Backstage passes to a TAFKAL80ETC concert".equals(item.name);
 	}
 	
 	private boolean isSulfuras(Item item) {
-		if ("Sulfuras, Hand of Ragnaros".equals(item.name)) {
-			return true;
-		} else {
-			return false;
-		}
+		return "Sulfuras, Hand of Ragnaros".equals(item.name);
 	}
 	
 	/* MENTAL STACK:
