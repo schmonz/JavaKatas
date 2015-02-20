@@ -47,12 +47,9 @@ public class GildedRoseTest {
 
 	@Test
 	public void canUpdateQualityAndSellIn() {
-		Item firstItem = new GildedRose().getItems().get(0);
+		Item ordinaryVest = new GildedRose().getItems().get(0);
 		
-		GildedRose.updateQuality();
-		
-		assertEquals(9, firstItem.getSellIn());
-		assertEquals(19, firstItem.getQuality());
+		updateBeforeSellBy(ordinaryVest, -1, -1);
 	}
 	
 	@Test
