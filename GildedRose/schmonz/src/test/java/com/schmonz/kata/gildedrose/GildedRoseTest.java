@@ -61,10 +61,44 @@ public class GildedRoseTest {
 
 		updateBeforeSellBy(theBrie, -1, 1);
 		updateBeforeSellBy(theBrie, -1, 1);
+		
 		updateBeforeSellBy(theBrie, -1, 2);
 		
 		assertEquals(-1, theBrie.getSellIn());
 		assertEquals(4, theBrie.getQuality());
+	}
+	
+	@Test
+	public void canUpdateBackstagePasses() {
+		Item thePasses = findThePasses(new GildedRose().getItems());
+		
+		updateBeforeSellBy(thePasses, -1, 1);
+		updateBeforeSellBy(thePasses, -1, 1);
+		updateBeforeSellBy(thePasses, -1, 1);
+		updateBeforeSellBy(thePasses, -1, 1);
+		updateBeforeSellBy(thePasses, -1, 1);
+		assertEquals(10, thePasses.getSellIn());
+		assertEquals(25, thePasses.getQuality());
+		
+		updateBeforeSellBy(thePasses, -1, 2);
+		updateBeforeSellBy(thePasses, -1, 2);
+		updateBeforeSellBy(thePasses, -1, 2);
+		updateBeforeSellBy(thePasses, -1, 2);
+		updateBeforeSellBy(thePasses, -1, 2);
+		assertEquals(5, thePasses.getSellIn());
+		assertEquals(35, thePasses.getQuality());
+
+		updateBeforeSellBy(thePasses, -1, 3);
+		updateBeforeSellBy(thePasses, -1, 3);
+		updateBeforeSellBy(thePasses, -1, 3);
+		updateBeforeSellBy(thePasses, -1, 3);
+		updateBeforeSellBy(thePasses, -1, 3);
+		assertEquals(0, thePasses.getSellIn());
+		assertEquals(50, thePasses.getQuality());
+
+		updateBeforeSellBy(thePasses, -1, -50);
+		assertEquals(-1, thePasses.getSellIn());
+		assertEquals(0, thePasses.getQuality());
 	}
 	
 	@Test
@@ -92,6 +126,15 @@ public class GildedRoseTest {
 		assertEquals(previousQuality + qualityChange, item.getQuality());
 	}
 	
+	private Item findThePasses(List<Item> items) {
+		for (Item each : items) {
+			if (isPasses(each)) {
+				return each;
+			}
+		}
+		return null;
+	}
+
 	private Item findTheBrie(List<Item> items) {
 		for (Item each : items) {
 			if (isBrie(each)) {
@@ -109,6 +152,14 @@ public class GildedRoseTest {
 		}
 	}
 	
+	private boolean isPasses(Item item) {
+		if ("Backstage passes to a TAFKAL80ETC concert".equals(item.name)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	private boolean isSulfuras(Item item) {
 		if ("Sulfuras, Hand of Ragnaros".equals(item.name)) {
 			return true;
@@ -116,13 +167,6 @@ public class GildedRoseTest {
 			return false;
 		}
 	}
-	
-	/* TEST LIST:
-	 * "Backstage passes" _increases_ in quality:
-	 * - With 10 days or less, quality increases by 2
-	 * - With 5 days or less, quality increases by 3
-	 * - After the concert, quality drops to 0
-	 */
 	
 	/* MENTAL STACK:
 	 * extract initializeInventory() from main()
