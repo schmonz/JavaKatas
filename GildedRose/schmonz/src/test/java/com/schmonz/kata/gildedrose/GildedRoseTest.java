@@ -115,6 +115,27 @@ public class GildedRoseTest {
 		}
 	}
 	
+	@Test
+	public void canDegradeQuality2xAfterSellByDate() {
+		Item ordinaryElixir = new GildedRose().getItems().get(2);
+
+		updateAllAndAssertOne(ordinaryElixir, -1, -1);
+		updateAllAndAssertOne(ordinaryElixir, -1, -1);
+		updateAllAndAssertOne(ordinaryElixir, -1, -1);
+		updateAllAndAssertOne(ordinaryElixir, -1, -1);
+		updateAllAndAssertOne(ordinaryElixir, -1, -1);
+		assertEquals(0, ordinaryElixir.getSellIn());
+		assertEquals(2, ordinaryElixir.getQuality());
+		
+		updateAllAndAssertOne(ordinaryElixir, -1, -2);
+		assertEquals(-1, ordinaryElixir.getSellIn());
+		assertEquals(0, ordinaryElixir.getQuality());
+
+		updateAllAndAssertOne(ordinaryElixir, -1, 0);
+		assertEquals(-2, ordinaryElixir.getSellIn());
+		assertTrue(ordinaryElixir.getQuality() >= 0);
+}
+
 	private void updateAllAndAssertOne(Item item, int sellInChange, int qualityChange) {
 		int previousSellIn = item.getSellIn();
 		int previousQuality = item.getQuality();
@@ -146,7 +167,8 @@ public class GildedRoseTest {
 	/* MENTAL STACK:
 	 * extract initializeInventory() from main()
 	 * deconstruct updateQuality()
-	 * stop needing superHackyStartup()
+	 * stop needing superHackySetup()
+	 * the doubling of quality change after sell-by goes for Brie, too
 	 */
 }
 
@@ -154,7 +176,6 @@ public class GildedRoseTest {
 
 # Background
 
-- After an item's sell-by date, quality degrades twice as fast
 - Items which are "legendary" never:
 	- need to be sold
 	- decrease in quality
