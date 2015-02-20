@@ -127,21 +127,11 @@ public class GildedRoseTest {
 	}
 	
 	private Item findThePasses(List<Item> items) {
-		for (Item each : items) {
-			if (isPasses(each)) {
-				return each;
-			}
-		}
-		return null;
+	    return items.stream().filter(o -> isPasses(o)).findFirst().get();
 	}
 
 	private Item findTheBrie(List<Item> items) {
-		for (Item each : items) {
-			if (isBrie(each)) {
-				return each;
-			}
-		}
-		return null;
+	    return items.stream().filter(o -> isBrie(o)).findFirst().get();
 	}
 	
 	private boolean isBrie(Item item) {
