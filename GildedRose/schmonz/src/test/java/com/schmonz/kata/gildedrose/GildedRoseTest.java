@@ -49,17 +49,17 @@ public class GildedRoseTest {
 	public void canUpdateQualityAndSellIn() {
 		Item ordinaryVest = new GildedRose().getItems().get(0);
 		
-		updateBeforeSellBy(ordinaryVest, -1, -1);
+		updateAllAndAssertOne(ordinaryVest, -1, -1);
 	}
 	
 	@Test
 	public void canUpdateAgedBrie() {
 		Item theBrie = findTheBrie(new GildedRose().getItems());
 
-		updateBeforeSellBy(theBrie, -1, 1);
-		updateBeforeSellBy(theBrie, -1, 1);
+		updateAllAndAssertOne(theBrie, -1, 1);
+		updateAllAndAssertOne(theBrie, -1, 1);
 		
-		updateBeforeSellBy(theBrie, -1, 2);
+		updateAllAndAssertOne(theBrie, -1, 2);
 		
 		assertEquals(-1, theBrie.getSellIn());
 		assertEquals(4, theBrie.getQuality());
@@ -69,31 +69,31 @@ public class GildedRoseTest {
 	public void canUpdateBackstagePasses() {
 		Item thePasses = findThePasses(new GildedRose().getItems());
 		
-		updateBeforeSellBy(thePasses, -1, 1);
-		updateBeforeSellBy(thePasses, -1, 1);
-		updateBeforeSellBy(thePasses, -1, 1);
-		updateBeforeSellBy(thePasses, -1, 1);
-		updateBeforeSellBy(thePasses, -1, 1);
+		updateAllAndAssertOne(thePasses, -1, 1);
+		updateAllAndAssertOne(thePasses, -1, 1);
+		updateAllAndAssertOne(thePasses, -1, 1);
+		updateAllAndAssertOne(thePasses, -1, 1);
+		updateAllAndAssertOne(thePasses, -1, 1);
 		assertEquals(10, thePasses.getSellIn());
 		assertEquals(25, thePasses.getQuality());
 		
-		updateBeforeSellBy(thePasses, -1, 2);
-		updateBeforeSellBy(thePasses, -1, 2);
-		updateBeforeSellBy(thePasses, -1, 2);
-		updateBeforeSellBy(thePasses, -1, 2);
-		updateBeforeSellBy(thePasses, -1, 2);
+		updateAllAndAssertOne(thePasses, -1, 2);
+		updateAllAndAssertOne(thePasses, -1, 2);
+		updateAllAndAssertOne(thePasses, -1, 2);
+		updateAllAndAssertOne(thePasses, -1, 2);
+		updateAllAndAssertOne(thePasses, -1, 2);
 		assertEquals(5, thePasses.getSellIn());
 		assertEquals(35, thePasses.getQuality());
 
-		updateBeforeSellBy(thePasses, -1, 3);
-		updateBeforeSellBy(thePasses, -1, 3);
-		updateBeforeSellBy(thePasses, -1, 3);
-		updateBeforeSellBy(thePasses, -1, 3);
-		updateBeforeSellBy(thePasses, -1, 3);
+		updateAllAndAssertOne(thePasses, -1, 3);
+		updateAllAndAssertOne(thePasses, -1, 3);
+		updateAllAndAssertOne(thePasses, -1, 3);
+		updateAllAndAssertOne(thePasses, -1, 3);
+		updateAllAndAssertOne(thePasses, -1, 3);
 		assertEquals(0, thePasses.getSellIn());
 		assertEquals(50, thePasses.getQuality());
 
-		updateBeforeSellBy(thePasses, -1, -50);
+		updateAllAndAssertOne(thePasses, -1, -50);
 		assertEquals(-1, thePasses.getSellIn());
 		assertEquals(0, thePasses.getQuality());
 	}
@@ -115,7 +115,7 @@ public class GildedRoseTest {
 		}
 	}
 	
-	private void updateBeforeSellBy(Item item, int sellInChange, int qualityChange) {
+	private void updateAllAndAssertOne(Item item, int sellInChange, int qualityChange) {
 		int previousSellIn = item.getSellIn();
 		int previousQuality = item.getQuality();
 		GildedRose.updateQuality();
