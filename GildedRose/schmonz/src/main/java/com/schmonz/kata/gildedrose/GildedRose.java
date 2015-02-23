@@ -65,7 +65,7 @@ public class GildedRose {
 				each.setSellIn(each.getSellIn() - 1);
 			}
 
-			if (each.getSellIn() < 0) {
+			if (isPastSellByDate(each)) {
 				if (isPasses(each)) {
 					each.setQuality(QUALITY_MIN);
 				} else if (isBrie(each)) {
@@ -115,4 +115,8 @@ public class GildedRose {
 		return isSulfuras(item);
 	}
 	
+	private boolean isPastSellByDate(Item each) {
+		return each.getSellIn() < 0;
+	}
+
 }
