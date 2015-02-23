@@ -145,15 +145,11 @@ public class GildedRoseTest {
 	}
 	
 	private Item findThePasses(List<Item> items) {
-	    return items.stream().filter(o -> isPasses(o)).findFirst().get();
+	    return items.stream().filter(o -> GildedRose.isPasses(o)).findFirst().get();
 	}
 
 	private Item findTheBrie(List<Item> items) {
 	    return items.stream().filter(o -> GildedRose.isBrie(o)).findFirst().get();
-	}
-	
-	private boolean isPasses(Item item) {
-		return "Backstage passes to a TAFKAL80ETC concert".equals(item.name);
 	}
 	
 	private boolean isSulfuras(Item item) {

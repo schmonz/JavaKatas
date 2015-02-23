@@ -26,7 +26,7 @@ public class GildedRose {
 
 	public static void updateQuality() {
 		for (Item each : items) {
-			if ((!isBrie(each)) && !"Backstage passes to a TAFKAL80ETC concert".equals(each.getName())) {
+			if ((!isBrie(each)) && !isPasses(each)) {
 				if (each.getQuality() > 0) {
 					if (!"Sulfuras, Hand of Ragnaros".equals(each.getName())) {
 						incrementQualityBy(each, -1);
@@ -36,7 +36,7 @@ public class GildedRose {
 				if (each.getQuality() < 50) {
 					incrementQualityBy(each, 1);
 
-					if ("Backstage passes to a TAFKAL80ETC concert".equals(each.getName())) {
+					if (isPasses(each)) {
 						if (each.getSellIn() < 11) {
 							if (each.getQuality() < 50) {
 								incrementQualityBy(each, 1);
@@ -58,7 +58,7 @@ public class GildedRose {
 
 			if (each.getSellIn() < 0) {
 				if (!isBrie(each)) {
-					if (!"Backstage passes to a TAFKAL80ETC concert".equals(each.getName())) {
+					if (!isPasses(each)) {
 						if (each.getQuality() > 0) {
 							if (!"Sulfuras, Hand of Ragnaros".equals(each.getName())) {
 								incrementQualityBy(each, -1);
@@ -86,6 +86,10 @@ public class GildedRose {
 
 	public static boolean isBrie(Item item) {
 		return "Aged Brie".equals(item.name);
+	}
+	
+	public static boolean isPasses(Item item) {
+		return "Backstage passes to a TAFKAL80ETC concert".equals(item.name);
 	}
 	
 }
