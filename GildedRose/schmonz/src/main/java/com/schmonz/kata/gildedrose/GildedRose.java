@@ -46,23 +46,17 @@ public class GildedRose {
 	public void updateQuality() {
 		for (Item each : pleasantlyNonStaticItems) {
 			if (isBrie(each)) {
-				if (each.getQuality() < QUALITY_MAX) {
-					incrementQualityBy(each, 1);
-				}
+				incrementQualityBy1UntilMax(each);
 			} else if (isPasses(each)) {
 				if (each.getQuality() < QUALITY_MAX) {
 					incrementQualityBy(each, 1);
 
 					if (each.getSellIn() < 11) {
-						if (each.getQuality() < QUALITY_MAX) {
-							incrementQualityBy(each, 1);
-						}
+						incrementQualityBy1UntilMax(each);
 					}
 
 					if (each.getSellIn() < 6) {
-						if (each.getQuality() < QUALITY_MAX) {
-							incrementQualityBy(each, 1);
-						}
+						incrementQualityBy1UntilMax(each);
 					}
 				}
 			} else if (!isSulfuras(each)) {
@@ -87,9 +81,7 @@ public class GildedRose {
 						each.setQuality(each.getQuality() - each.getQuality());
 					}
 				} else {
-					if (each.getQuality() < QUALITY_MAX) {
-						incrementQualityBy(each, 1);
-					}
+					incrementQualityBy1UntilMax(each);
 				}
 			}
 		}
@@ -101,6 +93,12 @@ public class GildedRose {
 	
 	private void incrementQualityBy(Item item, int increment) {
 		item.setQuality(item.getQuality() + increment);
+	}
+
+	private void incrementQualityBy1UntilMax(Item each) {
+		if (each.getQuality() < QUALITY_MAX) {
+			incrementQualityBy(each, 1);
+		}
 	}
 
 	public boolean isBrie(Item item) {
