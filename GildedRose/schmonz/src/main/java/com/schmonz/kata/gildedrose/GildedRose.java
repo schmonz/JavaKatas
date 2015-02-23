@@ -59,11 +59,11 @@ public class GildedRose {
 						incrementQualityBy1UntilMax(each);
 					}
 				}
-			} else if (!isSulfuras(each)) {
+			} else if (!isLegendary(each)) {
 				decrementQualityBy1UntilMin(each);
 			}
 
-			if (!isSulfuras(each)) {
+			if (!isLegendary(each)) {
 				each.setSellIn(each.getSellIn() - 1);
 			}
 
@@ -72,7 +72,7 @@ public class GildedRose {
 					each.setQuality(each.getQuality() - each.getQuality());
 				} else if (isBrie(each)) {
 					incrementQualityBy1UntilMax(each);
-				} else if (!isSulfuras(each)) {
+				} else if (!isLegendary(each)) {
 					decrementQualityBy1UntilMin(each);
 				}
 			}
@@ -109,6 +109,10 @@ public class GildedRose {
 	
 	public boolean isSulfuras(Item item) {
 		return "Sulfuras, Hand of Ragnaros".equals(item.name);
+	}
+	
+	private boolean isLegendary(Item item) {
+		return isSulfuras(item);
 	}
 	
 }

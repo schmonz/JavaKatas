@@ -160,14 +160,6 @@ public class GildedRoseTest {
 
 /*
 
-# Background
-
-- Items which are "legendary" never:
-	- need to be sold
-	- decrease in quality
-- "Sulfuras" is one such "legendary" item and its quality is always 80
-
-
 # Constraints
 
 - Can't change the Item class
