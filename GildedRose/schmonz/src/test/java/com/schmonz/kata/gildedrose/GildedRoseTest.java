@@ -106,7 +106,7 @@ public class GildedRoseTest {
 		for (int i = 0; i < 2 * EXPECTED_MAX_QUALITY; i++) {
 			mindTheStore.updateQuality();
 			for (Item item : items) {
-				if (GildedRose.isSulfuras(item)) {
+				if (mindTheStore.isSulfuras(item)) {
 					assertTrue(item.getQuality() == 80);
 				} else {
 					assertTrue(item.getQuality() <= EXPECTED_MAX_QUALITY);
@@ -146,11 +146,11 @@ public class GildedRoseTest {
 	}
 	
 	private Item findThePasses(List<Item> items) {
-	    return items.stream().filter(o -> GildedRose.isPasses(o)).findFirst().get();
+	    return items.stream().filter(o -> new GildedRose().isPasses(o)).findFirst().get();
 	}
 
 	private Item findTheBrie(List<Item> items) {
-	    return items.stream().filter(o -> GildedRose.isBrie(o)).findFirst().get();
+	    return items.stream().filter(o -> new GildedRose().isBrie(o)).findFirst().get();
 	}
 	
 	/* MENTAL STACK:

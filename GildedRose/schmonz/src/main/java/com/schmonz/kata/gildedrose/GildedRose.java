@@ -88,22 +88,22 @@ public class GildedRose {
 	}
 
 	public List<Item> getItems() {
-		return items;
+		return pleasantlyNonStaticItems;
 	}
 	
-	private static void incrementQualityBy(Item item, int increment) {
+	private void incrementQualityBy(Item item, int increment) {
 		item.setQuality(item.getQuality() + increment);
 	}
 
-	public static boolean isBrie(Item item) {
+	public boolean isBrie(Item item) {
 		return "Aged Brie".equals(item.name);
 	}
 	
-	public static boolean isPasses(Item item) {
+	public boolean isPasses(Item item) {
 		return "Backstage passes to a TAFKAL80ETC concert".equals(item.name);
 	}
 	
-	public static boolean isSulfuras(Item item) {
+	public boolean isSulfuras(Item item) {
 		return "Sulfuras, Hand of Ragnaros".equals(item.name);
 	}
 	
