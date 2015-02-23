@@ -70,18 +70,14 @@ public class GildedRose {
 			}
 
 			if (each.getSellIn() < 0) {
-				if (!isBrie(each)) {
-					if (!isPasses(each)) {
-						if (each.getQuality() > QUALITY_MIN) {
-							if (!isSulfuras(each)) {
-								incrementQualityBy(each, -1);
-							}
-						}
-					} else {
-						each.setQuality(each.getQuality() - each.getQuality());
-					}
-				} else {
+				if (isPasses(each)) {
+					each.setQuality(each.getQuality() - each.getQuality());
+				} else if (isBrie(each)) {
 					incrementQualityBy1UntilMax(each);
+				} else if (!isSulfuras(each)) {
+					if (each.getQuality() > QUALITY_MIN) {
+						incrementQualityBy(each, -1);
+					}
 				}
 			}
 		}
