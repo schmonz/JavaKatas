@@ -59,7 +59,7 @@ public class GildedRose {
 						incrementQualityBy1UntilMax(each);
 					}
 				}
-			} else if (!isLegendary(each)) {
+			} else {
 				decrementQualityBy1UntilMin(each);
 			}
 
@@ -72,7 +72,7 @@ public class GildedRose {
 					each.setQuality(each.getQuality() - each.getQuality());
 				} else if (isBrie(each)) {
 					incrementQualityBy1UntilMax(each);
-				} else if (!isLegendary(each)) {
+				} else {
 					decrementQualityBy1UntilMin(each);
 				}
 			}
@@ -94,8 +94,10 @@ public class GildedRose {
 	}
 
 	private void decrementQualityBy1UntilMin(Item each) {
-		if (each.getQuality() > QUALITY_MIN) {
-			incrementQualityBy(each, -1);
+		if (!isLegendary(each)) {
+			if (each.getQuality() > QUALITY_MIN) {
+				incrementQualityBy(each, -1);
+			}
 		}
 	}
 
