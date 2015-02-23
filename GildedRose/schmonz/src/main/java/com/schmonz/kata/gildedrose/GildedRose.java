@@ -48,16 +48,14 @@ public class GildedRose {
 			if (isBrie(each)) {
 				incrementQualityBy1UntilMax(each);
 			} else if (isPasses(each)) {
-				if (each.getQuality() < QUALITY_MAX) {
-					incrementQualityBy(each, 1);
+				incrementQualityBy1UntilMax(each);
+				
+				if (each.getSellIn() < 11) {
+					incrementQualityBy1UntilMax(each);
+				}
 
-					if (each.getSellIn() < 11) {
-						incrementQualityBy1UntilMax(each);
-					}
-
-					if (each.getSellIn() < 6) {
-						incrementQualityBy1UntilMax(each);
-					}
+				if (each.getSellIn() < 6) {
+					incrementQualityBy1UntilMax(each);
 				}
 			} else {
 				decrementQualityBy1UntilMin(each);
