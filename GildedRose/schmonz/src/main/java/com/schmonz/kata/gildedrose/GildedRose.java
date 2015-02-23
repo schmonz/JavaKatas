@@ -67,7 +67,7 @@ public class GildedRose {
 
 			if (each.getSellIn() < 0) {
 				if (isPasses(each)) {
-					each.setQuality(each.getQuality() - each.getQuality());
+					each.setQuality(0);
 				} else if (isBrie(each)) {
 					incrementQualityBy1UntilMax(each);
 				} else {
