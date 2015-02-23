@@ -60,9 +60,7 @@ public class GildedRose {
 					}
 				}
 			} else if (!isSulfuras(each)) {
-				if (each.getQuality() > QUALITY_MIN) {
-					incrementQualityBy(each, -1);
-				}
+				decrementQualityBy1UntilMin(each);
 			}
 
 			if (!isSulfuras(each)) {
@@ -75,9 +73,7 @@ public class GildedRose {
 				} else if (isBrie(each)) {
 					incrementQualityBy1UntilMax(each);
 				} else if (!isSulfuras(each)) {
-					if (each.getQuality() > QUALITY_MIN) {
-						incrementQualityBy(each, -1);
-					}
+					decrementQualityBy1UntilMin(each);
 				}
 			}
 		}
@@ -94,6 +90,12 @@ public class GildedRose {
 	private void incrementQualityBy1UntilMax(Item each) {
 		if (each.getQuality() < QUALITY_MAX) {
 			incrementQualityBy(each, 1);
+		}
+	}
+
+	private void decrementQualityBy1UntilMin(Item each) {
+		if (each.getQuality() > QUALITY_MIN) {
+			incrementQualityBy(each, -1);
 		}
 	}
 
