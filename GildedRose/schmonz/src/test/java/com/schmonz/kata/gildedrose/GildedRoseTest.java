@@ -100,10 +100,11 @@ public class GildedRoseTest {
 	
 	@Test
 	public void cannotUpdateQualityTooHighOrTooLow() {
-		List<Item> items = new GildedRose().getItems();
+		GildedRose mindTheStore = new GildedRose();
+		List<Item> items = mindTheStore.getItems();
 		
 		for (int i = 0; i < 2 * EXPECTED_MAX_QUALITY; i++) {
-			GildedRose.updateQuality();
+			mindTheStore.updateQuality();
 			for (Item item : items) {
 				if (GildedRose.isSulfuras(item)) {
 					assertTrue(item.getQuality() == 80);
@@ -139,7 +140,7 @@ public class GildedRoseTest {
 	private void updateAllAndAssertOne(Item item, int sellInChange, int qualityChange) {
 		int previousSellIn = item.getSellIn();
 		int previousQuality = item.getQuality();
-		GildedRose.updateQuality();
+		new GildedRose().updateQuality();
 		assertEquals(previousSellIn + sellInChange, item.getSellIn());
 		assertEquals(previousQuality + qualityChange, item.getQuality());
 	}

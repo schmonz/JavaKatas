@@ -7,7 +7,17 @@ public class GildedRose {
 
 	private static List<Item> items = null;
 	static boolean inTestMode = false;
+	
+	private List<Item> pleasantlyNonStaticItems;
 
+	public GildedRose() {
+		this.pleasantlyNonStaticItems = items;
+	}
+
+	public GildedRose(List<Item> someItems) {
+		this.pleasantlyNonStaticItems = someItems;
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("OMGHAI!");
 
@@ -19,13 +29,14 @@ public class GildedRose {
 		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
 		items.add(new Item("Conjured Mana Cake", 3, 6));
 
+		GildedRose mindTheStore = new GildedRose(items);
 		if (!inTestMode) {
-			updateQuality();
+			mindTheStore.updateQuality();
 		}
 	}
 
-	public static void updateQuality() {
-		for (Item each : items) {
+	public void updateQuality() {
+		for (Item each : pleasantlyNonStaticItems) {
 			if ((!isBrie(each)) && !isPasses(each)) {
 				if (each.getQuality() > 0) {
 					if (!isSulfuras(each)) {
