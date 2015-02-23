@@ -28,7 +28,7 @@ public class GildedRose {
 		for (Item each : items) {
 			if ((!isBrie(each)) && !isPasses(each)) {
 				if (each.getQuality() > 0) {
-					if (!"Sulfuras, Hand of Ragnaros".equals(each.getName())) {
+					if (!isSulfuras(each)) {
 						incrementQualityBy(each, -1);
 					}
 				}
@@ -52,7 +52,7 @@ public class GildedRose {
 				}
 			}
 
-			if (!"Sulfuras, Hand of Ragnaros".equals(each.getName())) {
+			if (!isSulfuras(each)) {
 				each.setSellIn(each.getSellIn() - 1);
 			}
 
@@ -60,7 +60,7 @@ public class GildedRose {
 				if (!isBrie(each)) {
 					if (!isPasses(each)) {
 						if (each.getQuality() > 0) {
-							if (!"Sulfuras, Hand of Ragnaros".equals(each.getName())) {
+							if (!isSulfuras(each)) {
 								incrementQualityBy(each, -1);
 							}
 						}
@@ -90,6 +90,10 @@ public class GildedRose {
 	
 	public static boolean isPasses(Item item) {
 		return "Backstage passes to a TAFKAL80ETC concert".equals(item.name);
+	}
+	
+	public static boolean isSulfuras(Item item) {
+		return "Sulfuras, Hand of Ragnaros".equals(item.name);
 	}
 	
 }

@@ -105,7 +105,7 @@ public class GildedRoseTest {
 		for (int i = 0; i < 2 * EXPECTED_MAX_QUALITY; i++) {
 			GildedRose.updateQuality();
 			for (Item item : items) {
-				if (isSulfuras(item)) {
+				if (GildedRose.isSulfuras(item)) {
 					assertTrue(item.getQuality() == 80);
 				} else {
 					assertTrue(item.getQuality() <= EXPECTED_MAX_QUALITY);
@@ -152,15 +152,12 @@ public class GildedRoseTest {
 	    return items.stream().filter(o -> GildedRose.isBrie(o)).findFirst().get();
 	}
 	
-	private boolean isSulfuras(Item item) {
-		return "Sulfuras, Hand of Ragnaros".equals(item.name);
-	}
-	
 	/* MENTAL STACK:
 	 * extract initializeInventory() from main()
 	 * deconstruct updateQuality()
 	 * stop needing superHackySetup()
 	 * the doubling of quality change after sell-by goes for Brie, too
+	 * cut it out with all the statics
 	 */
 }
 
