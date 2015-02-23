@@ -29,23 +29,23 @@ public class GildedRose {
 			if ((!"Aged Brie".equals(each.getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(each.getName())) {
 				if (each.getQuality() > 0) {
 					if (!"Sulfuras, Hand of Ragnaros".equals(each.getName())) {
-						each.setQuality(each.getQuality() - 1);
+						incrementQualityBy(each, -1);
 					}
 				}
 			} else {
 				if (each.getQuality() < 50) {
-					each.setQuality(each.getQuality() + 1);
+					incrementQualityBy(each, 1);
 
 					if ("Backstage passes to a TAFKAL80ETC concert".equals(each.getName())) {
 						if (each.getSellIn() < 11) {
 							if (each.getQuality() < 50) {
-								each.setQuality(each.getQuality() + 1);
+								incrementQualityBy(each, 1);
 							}
 						}
 
 						if (each.getSellIn() < 6) {
 							if (each.getQuality() < 50) {
-								each.setQuality(each.getQuality() + 1);
+								incrementQualityBy(each, 1);
 							}
 						}
 					}
@@ -61,7 +61,7 @@ public class GildedRose {
 					if (!"Backstage passes to a TAFKAL80ETC concert".equals(each.getName())) {
 						if (each.getQuality() > 0) {
 							if (!"Sulfuras, Hand of Ragnaros".equals(each.getName())) {
-								each.setQuality(each.getQuality() - 1);
+								incrementQualityBy(each, -1);
 							}
 						}
 					} else {
@@ -69,7 +69,7 @@ public class GildedRose {
 					}
 				} else {
 					if (each.getQuality() < 50) {
-						each.setQuality(each.getQuality() + 1);
+						incrementQualityBy(each, 1);
 					}
 				}
 			}
@@ -78,6 +78,10 @@ public class GildedRose {
 
 	public List<Item> getItems() {
 		return items;
+	}
+	
+	private static void incrementQualityBy(Item item, int increment) {
+		item.setQuality(item.getQuality() + increment);
 	}
 
 }
