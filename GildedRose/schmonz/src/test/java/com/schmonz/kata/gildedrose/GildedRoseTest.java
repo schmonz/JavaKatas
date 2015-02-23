@@ -10,9 +10,6 @@ import org.junit.Test;
 
 public class GildedRoseTest {
 	
-	private int EXPECTED_MAX_QUALITY = 50;
-	private int EXPECTED_MIN_QUALITY = 0;
-
 	@Before
 	public void superHackySetup() {
 		GildedRose.inTestMode = true;
@@ -41,7 +38,7 @@ public class GildedRoseTest {
 			assertEquals(expected.getSellIn(), actual.getSellIn());
 			assertEquals(expected.getQuality(), actual.getQuality());
 			
-			assertTrue(actual.getQuality() >= EXPECTED_MIN_QUALITY);
+			assertTrue(actual.getQuality() >= GildedRose.QUALITY_MIN);
 		}
 	}
 
@@ -103,14 +100,14 @@ public class GildedRoseTest {
 		GildedRose mindTheStore = new GildedRose();
 		List<Item> items = mindTheStore.getItems();
 		
-		for (int i = 0; i < 2 * EXPECTED_MAX_QUALITY; i++) {
+		for (int i = 0; i < 2 * GildedRose.QUALITY_MAX; i++) {
 			mindTheStore.updateQuality();
 			for (Item item : items) {
 				if (mindTheStore.isSulfuras(item)) {
 					assertTrue(item.getQuality() == 80);
 				} else {
-					assertTrue(item.getQuality() <= EXPECTED_MAX_QUALITY);
-					assertTrue(item.getQuality() >= EXPECTED_MIN_QUALITY);
+					assertTrue(item.getQuality() <= GildedRose.QUALITY_MAX);
+					assertTrue(item.getQuality() >= GildedRose.QUALITY_MIN);
 				}
 			}
 		}
