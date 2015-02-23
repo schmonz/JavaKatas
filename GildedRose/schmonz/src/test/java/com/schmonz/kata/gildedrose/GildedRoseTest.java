@@ -154,7 +154,6 @@ public class GildedRoseTest {
 	}
 	
 	/* MENTAL STACK:
-	 * extract initializeInventory() from main()
 	 * deconstruct updateQuality()
 	 * stop needing superHackySetup()
 	 * the doubling of quality change after sell-by goes for Brie, too
