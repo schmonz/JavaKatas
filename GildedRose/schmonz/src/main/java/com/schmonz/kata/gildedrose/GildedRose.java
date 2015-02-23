@@ -42,13 +42,7 @@ public class GildedRose {
 
 	public void updateQuality() {
 		for (Item each : pleasantlyNonStaticItems) {
-			if ((!isBrie(each)) && !isPasses(each)) {
-				if (each.getQuality() > 0) {
-					if (!isSulfuras(each)) {
-						incrementQualityBy(each, -1);
-					}
-				}
-			} else {
+			if (isBrie(each) || isPasses(each)) {
 				if (each.getQuality() < 50) {
 					incrementQualityBy(each, 1);
 
@@ -64,6 +58,12 @@ public class GildedRose {
 								incrementQualityBy(each, 1);
 							}
 						}
+					}
+				}
+			} else {
+				if (each.getQuality() > 0) {
+					if (!isSulfuras(each)) {
+						incrementQualityBy(each, -1);
 					}
 				}
 			}
