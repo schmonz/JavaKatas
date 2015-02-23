@@ -149,11 +149,7 @@ public class GildedRoseTest {
 	}
 
 	private Item findTheBrie(List<Item> items) {
-	    return items.stream().filter(o -> isBrie(o)).findFirst().get();
-	}
-	
-	private boolean isBrie(Item item) {
-		return "Aged Brie".equals(item.name);
+	    return items.stream().filter(o -> GildedRose.isBrie(o)).findFirst().get();
 	}
 	
 	private boolean isPasses(Item item) {
