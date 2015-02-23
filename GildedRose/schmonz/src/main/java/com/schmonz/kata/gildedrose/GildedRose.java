@@ -55,13 +55,12 @@ public class GildedRose {
 				} else {
 					incrementQualityBy(each, 1);
 				}
-
 			} else {
 				decrementQualityBy1UntilMin(each);
 			}
 
 			if (!isLegendary(each)) {
-				each.setSellIn(each.getSellIn() - 1);
+				decrementSellBy(each);
 			}
 
 			if (isPastSellByDate(each)) {
@@ -93,6 +92,10 @@ public class GildedRose {
 				incrementQualityBy(each, -1);
 			}
 		}
+	}
+
+	private void decrementSellBy(Item each) {
+		each.setSellIn(each.getSellIn() - 1);
 	}
 
 	public boolean isBrie(Item item) {
