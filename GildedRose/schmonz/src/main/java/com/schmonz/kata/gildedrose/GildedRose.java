@@ -46,17 +46,16 @@ public class GildedRose {
 	public void updateQuality() {
 		for (Item each : pleasantlyNonStaticItems) {
 			if (isBrie(each)) {
-				incrementQualityBy1UntilMax(each);
+				incrementQualityBy(each, 1);
 			} else if (isPasses(each)) {
-				incrementQualityBy1UntilMax(each);
-				
-				if (each.getSellIn() < 11) {
-					incrementQualityBy1UntilMax(each);
+				if (each.getSellIn() <= 5) {
+					incrementQualityBy(each, 3);
+				} else if (each.getSellIn() <= 10) {
+					incrementQualityBy(each, 2);
+				} else {
+					incrementQualityBy(each, 1);
 				}
 
-				if (each.getSellIn() < 6) {
-					incrementQualityBy1UntilMax(each);
-				}
 			} else {
 				decrementQualityBy1UntilMin(each);
 			}
@@ -69,7 +68,7 @@ public class GildedRose {
 				if (isPasses(each)) {
 					each.setQuality(QUALITY_MIN);
 				} else if (isBrie(each)) {
-					incrementQualityBy1UntilMax(each);
+					incrementQualityBy(each, 1);
 				} else {
 					decrementQualityBy1UntilMin(each);
 				}
@@ -82,12 +81,9 @@ public class GildedRose {
 	}
 	
 	private void incrementQualityBy(Item item, int increment) {
-		item.setQuality(item.getQuality() + increment);
-	}
-
-	private void incrementQualityBy1UntilMax(Item each) {
-		if (each.getQuality() < QUALITY_MAX) {
-			incrementQualityBy(each, 1);
+		int newQuality = item.getQuality() + increment;
+		if (newQuality <= QUALITY_MAX) {
+			item.setQuality(newQuality);
 		}
 	}
 
