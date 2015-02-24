@@ -12,7 +12,6 @@ public class Passes extends ReasonableItem {
 		} else if (getSellIn() <= 4) {
 			qualityIncrement = 3;
 		} else if (getSellIn() <= 9) {
-			System.err.println("Setting increment to 2 because sellIn == " + getSellIn());
 			qualityIncrement = 2;
 		}
 	}
