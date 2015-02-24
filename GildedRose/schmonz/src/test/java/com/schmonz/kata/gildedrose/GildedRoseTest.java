@@ -70,17 +70,43 @@ public class GildedRoseTest {
 	}
 	
 	@Test
-	public void canUpdateAgedBrie() {
-		GildedRose mindTheStore = new GildedRose();
-		ReasonableItem theBrie = findTheBrie(mindTheStore.getItems());
-
-		updateAllAndAssertOne(mindTheStore, theBrie, -1, 1);
-		updateAllAndAssertOne(mindTheStore, theBrie, -1, 1);
+	public void insertOneBrie() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Aged Brie", 5, 7));
 		
-		updateAllAndAssertOne(mindTheStore, theBrie, -1, 2);
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
 		
-		assertEquals(-1, theBrie.getSellIn());
-		assertEquals(4, theBrie.getQuality());
+		assertEquals(5, agedBrie.getSellIn());
+		assertEquals(7, agedBrie.getQuality());
+	}
+	
+	@Test
+	public void updateOneBrie() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Aged Brie", 5, 7));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		
+		assertEquals(4, agedBrie.getSellIn());
+		assertEquals(8, agedBrie.getQuality());
+	}
+	
+	@Test
+	public void updateOneBriePastSellByDate() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Aged Brie", 2, 0));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem ordinaryItem = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		
+		assertEquals(-1, ordinaryItem.getSellIn());
+		assertEquals(4, ordinaryItem.getQuality());
 	}
 	
 	@Test
