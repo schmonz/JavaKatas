@@ -53,7 +53,7 @@ public class ReasonableItem {
 	}
 
 	protected void updateQualityIncrement() {
-		if (isPastSellByDate()) {
+		if (getSellIn() < 0) {
 			qualityIncrement = 2 * qualityIncrement;
 		}
 	}
@@ -67,9 +67,5 @@ public class ReasonableItem {
 
 	protected void decrementSellBy() {
 		setSellIn(getSellIn() - 1);
-	}
-	
-	protected boolean isPastSellByDate() {
-		return getSellIn() < 0;
 	}
 }
