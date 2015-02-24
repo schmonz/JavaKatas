@@ -72,11 +72,11 @@ public class ReasonableItem {
 	}
 	
 	public boolean isBrie() {
-		return "com.schmonz.kata.gildedrose.Brie".equals(getClass().getName());
+		return this instanceof Brie;
 	}
 	
 	public boolean isPasses() {
-		return "com.schmonz.kata.gildedrose.Passes".equals(getClass().getName());
+		return this instanceof Passes;
 	}
 	
 	public boolean isSulfuras() {
