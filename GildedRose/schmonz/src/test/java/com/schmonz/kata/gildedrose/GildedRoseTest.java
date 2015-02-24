@@ -2,6 +2,7 @@ package com.schmonz.kata.gildedrose;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -85,6 +86,31 @@ public class GildedRoseTest {
 	}
 	
 	@Test
+	public void canUpdateConjuredThingy() {
+		GildedRose mindTheStore = new GildedRose();
+		ReasonableItem conjuredThingy = mindTheStore.getItems().get(5);
+		
+		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
+		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
+		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
+		assertEquals(0, conjuredThingy.getSellIn());
+		assertEquals(0, conjuredThingy.getQuality());
+		
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Conjured Mana Cake", 3, 15));
+		mindTheStore = new GildedRose(customItems);
+		conjuredThingy = mindTheStore.getItems().get(0);
+		
+		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
+		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
+		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
+		assertEquals(0, conjuredThingy.getSellIn());
+		assertEquals(9, conjuredThingy.getQuality());
+
+		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -4);
+	}
+	
+	@Test
 	public void cannotUpdateQualityTooHighOrTooLow() {
 		GildedRose mindTheStore = new GildedRose();
 		List<ReasonableItem> items = mindTheStore.getItems();
@@ -140,11 +166,3 @@ public class GildedRoseTest {
 		return items.stream().filter(o -> o.isBrie()).findFirst().get();
 	}
 }
-
-/*
-
-# Assignment
-
-- Track "conjured" items, whose quality degrades twice as fast to begin with
-
-*/

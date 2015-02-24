@@ -11,6 +11,8 @@ public class ReasonableItem {
 			return new Brie(item);
 		} else if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
 			return new Passes(item);
+		} else if ("Conjured Mana Cake".equals(item.getName())) {
+			return new ManaCake(item);
 		} else {
 			return new ReasonableItem(item);
 		}

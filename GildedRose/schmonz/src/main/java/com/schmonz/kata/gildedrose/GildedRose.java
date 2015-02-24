@@ -15,6 +15,10 @@ public class GildedRose {
 		this.reasonableItems = items2reasonable(items);
 	}
 	
+	public GildedRose(List<Item> someItems) {
+		this.reasonableItems = items2reasonable(someItems);
+	}
+	
 	protected List<Item> defaultItems() {
 		List<Item> someItems = new ArrayList<Item>();
 		someItems.add(new Item("+5 Dexterity Vest", 10, 20));
