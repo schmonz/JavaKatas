@@ -5,7 +5,6 @@ public class Sulfuras extends ReasonableItem {
 		super(item);
 	}
 	
-	public boolean isLegendary() {
-		return true;
+	public void updateQuality() {
 	}
 }

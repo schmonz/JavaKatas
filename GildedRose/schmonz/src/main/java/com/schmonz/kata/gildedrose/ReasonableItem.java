@@ -46,20 +46,13 @@ public class ReasonableItem {
 	
 	public void updateQuality() {
 		incrementQualityBy(-1);
-
-		if (!isLegendary()) {
-			decrementSellBy();
-		}
-
+		decrementSellBy();
 		if (isPastSellByDate()) {
 			incrementQualityBy(-1);
 		}
 	}
 	
 	protected void incrementQualityBy(int increment) {
-		if (isLegendary()) {
-			return;
-		}
 		int newQuality = getQuality() + increment;
 		if ((QUALITY_MIN <= newQuality) && (newQuality <= QUALITY_MAX)) {
 			setQuality(newQuality);
@@ -68,10 +61,6 @@ public class ReasonableItem {
 
 	protected void decrementSellBy() {
 		setSellIn(getSellIn() - 1);
-	}
-	
-	protected boolean isLegendary() {
-		return false;
 	}
 	
 	protected boolean isPastSellByDate() {
