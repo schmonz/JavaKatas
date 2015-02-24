@@ -53,6 +53,23 @@ public class GildedRoseTest {
 	}
 	
 	@Test
+	public void updateOneOrdinaryItemPastSellByDate() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Nothing Special", 4, 2));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem ordinaryItem = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		
+		assertEquals(-1, ordinaryItem.getSellIn());
+		assertEquals(0, ordinaryItem.getQuality());
+	}
+	
+	@Test
 	public void canUpdateAgedBrie() {
 		GildedRose mindTheStore = new GildedRose();
 		ReasonableItem theBrie = findTheBrie(mindTheStore.getItems());
