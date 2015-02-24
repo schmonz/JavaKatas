@@ -118,7 +118,7 @@ public class GildedRoseTest {
 		for (int i = 0; i < 2 * ReasonableItem.QUALITY_MAX; i++) {
 			mindTheStore.updateQuality();
 			for (ReasonableItem item : items) {
-				if (item.isSulfuras()) {
+				if (item.isLegendary()) {
 					assertTrue(item.getQuality() == 80);
 				} else {
 					assertTrue(item.getQuality() <= ReasonableItem.QUALITY_MAX);

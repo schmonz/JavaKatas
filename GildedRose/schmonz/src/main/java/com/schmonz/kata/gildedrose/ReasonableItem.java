@@ -13,6 +13,8 @@ public class ReasonableItem {
 			return new Passes(item);
 		} else if ("Conjured Mana Cake".equals(item.getName())) {
 			return new ManaCake(item);
+		} else if ("Sulfuras, Hand of Ragnaros".equals(item.getName())) {
+			return new Sulfuras(item);
 		} else {
 			return new ReasonableItem(item);
 		}
@@ -68,12 +70,8 @@ public class ReasonableItem {
 		setSellIn(getSellIn() - 1);
 	}
 	
-	public boolean isSulfuras() {
-		return "Sulfuras, Hand of Ragnaros".equals(getName());
-	}
-	
-	private boolean isLegendary() {
-		return isSulfuras();
+	protected boolean isLegendary() {
+		return false;
 	}
 	
 	protected boolean isPastSellByDate() {
