@@ -44,19 +44,21 @@ public class GildedRoseTest {
 
 	@Test
 	public void canUpdateQualityAndSellIn() {
-		Item ordinaryVest = new GildedRose().getItems().get(0);
+		GildedRose mindTheStore = new GildedRose();
+		Item ordinaryVest = mindTheStore.getItems().get(0);
 		
-		updateAllAndAssertOne(ordinaryVest, -1, -1);
+		updateAllAndAssertOne(mindTheStore, ordinaryVest, -1, -1);
 	}
 	
 	@Test
 	public void canUpdateAgedBrie() {
-		Item theBrie = findTheBrie(new GildedRose().getItems());
+		GildedRose mindTheStore = new GildedRose();
+		Item theBrie = findTheBrie(mindTheStore.getItems());
 
-		updateAllAndAssertOne(theBrie, -1, 1);
-		updateAllAndAssertOne(theBrie, -1, 1);
+		updateAllAndAssertOne(mindTheStore, theBrie, -1, 1);
+		updateAllAndAssertOne(mindTheStore, theBrie, -1, 1);
 		
-		updateAllAndAssertOne(theBrie, -1, 2);
+		updateAllAndAssertOne(mindTheStore, theBrie, -1, 2);
 		
 		assertEquals(-1, theBrie.getSellIn());
 		assertEquals(4, theBrie.getQuality());
@@ -64,33 +66,34 @@ public class GildedRoseTest {
 	
 	@Test
 	public void canUpdateBackstagePasses() {
-		Item thePasses = findThePasses(new GildedRose().getItems());
+		GildedRose mindTheStore = new GildedRose();
+		Item thePasses = findThePasses(mindTheStore.getItems());
 		
-		updateAllAndAssertOne(thePasses, -1, 1);
-		updateAllAndAssertOne(thePasses, -1, 1);
-		updateAllAndAssertOne(thePasses, -1, 1);
-		updateAllAndAssertOne(thePasses, -1, 1);
-		updateAllAndAssertOne(thePasses, -1, 1);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
 		assertEquals(10, thePasses.getSellIn());
 		assertEquals(25, thePasses.getQuality());
 		
-		updateAllAndAssertOne(thePasses, -1, 2);
-		updateAllAndAssertOne(thePasses, -1, 2);
-		updateAllAndAssertOne(thePasses, -1, 2);
-		updateAllAndAssertOne(thePasses, -1, 2);
-		updateAllAndAssertOne(thePasses, -1, 2);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
 		assertEquals(5, thePasses.getSellIn());
 		assertEquals(35, thePasses.getQuality());
 
-		updateAllAndAssertOne(thePasses, -1, 3);
-		updateAllAndAssertOne(thePasses, -1, 3);
-		updateAllAndAssertOne(thePasses, -1, 3);
-		updateAllAndAssertOne(thePasses, -1, 3);
-		updateAllAndAssertOne(thePasses, -1, 3);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
 		assertEquals(0, thePasses.getSellIn());
 		assertEquals(50, thePasses.getQuality());
 
-		updateAllAndAssertOne(thePasses, -1, -50);
+		updateAllAndAssertOne(mindTheStore, thePasses, -1, -50);
 		assertEquals(-1, thePasses.getSellIn());
 		assertEquals(0, thePasses.getQuality());
 	}
@@ -115,29 +118,30 @@ public class GildedRoseTest {
 	
 	@Test
 	public void canDegradeQuality2xAfterSellByDate() {
-		Item ordinaryElixir = new GildedRose().getItems().get(2);
+		GildedRose mindTheStore = new GildedRose();
+		Item ordinaryElixir = mindTheStore.getItems().get(2);
 
-		updateAllAndAssertOne(ordinaryElixir, -1, -1);
-		updateAllAndAssertOne(ordinaryElixir, -1, -1);
-		updateAllAndAssertOne(ordinaryElixir, -1, -1);
-		updateAllAndAssertOne(ordinaryElixir, -1, -1);
-		updateAllAndAssertOne(ordinaryElixir, -1, -1);
+		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
+		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
+		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
+		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
+		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
 		assertEquals(0, ordinaryElixir.getSellIn());
 		assertEquals(2, ordinaryElixir.getQuality());
 		
-		updateAllAndAssertOne(ordinaryElixir, -1, -2);
+		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -2);
 		assertEquals(-1, ordinaryElixir.getSellIn());
 		assertEquals(0, ordinaryElixir.getQuality());
 
-		updateAllAndAssertOne(ordinaryElixir, -1, 0);
+		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, 0);
 		assertEquals(-2, ordinaryElixir.getSellIn());
 		assertTrue(ordinaryElixir.getQuality() >= 0);
 }
 
-	private void updateAllAndAssertOne(Item item, int sellInChange, int qualityChange) {
+	private void updateAllAndAssertOne(GildedRose store, Item item, int sellInChange, int qualityChange) {
 		int previousSellIn = item.getSellIn();
 		int previousQuality = item.getQuality();
-		new GildedRose().updateQuality();
+		store.updateQuality();
 		assertEquals(previousSellIn + sellInChange, item.getSellIn());
 		assertEquals(previousQuality + qualityChange, item.getQuality());
 	}
@@ -154,7 +158,6 @@ public class GildedRoseTest {
 	 * deconstruct updateQuality()
 	 * stop needing superHackySetup()
 	 * the doubling of quality change after sell-by goes for Brie, too
-	 * cut it out with all the statics
 	 */
 }
 
