@@ -26,7 +26,7 @@ public class GildedRoseTest {
 		expectedItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
 		expectedItems.add(new Item("Conjured Mana Cake", 3, 6));
 
-		List<Item> initialItems = new GildedRose().getItems();
+		List<ReasonableItem> initialItems = new GildedRose().getItems();
 		assertNotNull(initialItems);
 		assertEquals(expectedItems.size(), initialItems.size());
 		
@@ -101,7 +101,7 @@ public class GildedRoseTest {
 	@Test
 	public void cannotUpdateQualityTooHighOrTooLow() {
 		GildedRose mindTheStore = new GildedRose();
-		List<Item> items = mindTheStore.getItems();
+		List<ReasonableItem> items = mindTheStore.getItems();
 		
 		for (int i = 0; i < 2 * GildedRose.QUALITY_MAX; i++) {
 			mindTheStore.updateQuality();
@@ -146,12 +146,12 @@ public class GildedRoseTest {
 		assertEquals(previousQuality + qualityChange, item.getQuality());
 	}
 	
-	private Item findThePasses(List<Item> items) {
+	private Item findThePasses(List<ReasonableItem> items) {
 	    return items.stream().filter(o -> new GildedRose().isPasses(o)).findFirst().get();
 	}
 
-	private Item findTheBrie(List<Item> items) {
-	    return items.stream().filter(o -> new GildedRose().isBrie(o)).findFirst().get();
+	private Item findTheBrie(List<ReasonableItem> list) {
+	    return list.stream().filter(o -> new GildedRose().isBrie(o)).findFirst().get();
 	}
 	
 	/* MENTAL STACK:

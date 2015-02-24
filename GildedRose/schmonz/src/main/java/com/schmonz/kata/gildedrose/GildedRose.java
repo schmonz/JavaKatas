@@ -2,6 +2,7 @@ package com.schmonz.kata.gildedrose;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GildedRose {
 
@@ -11,14 +12,16 @@ public class GildedRose {
 	public static final int QUALITY_MAX = 50;
 	public static final int QUALITY_MIN = 0;
 	
-	private List<Item> pleasantlyNonStaticItems;
+	private List<ReasonableItem> pleasantlyNonStaticItems;
 
 	public GildedRose() {
-		this.pleasantlyNonStaticItems = items;
+		this(items);
 	}
 
 	public GildedRose(List<Item> someItems) {
-		this.pleasantlyNonStaticItems = someItems;
+		this.pleasantlyNonStaticItems = someItems.stream().map(
+				o -> new ReasonableItem(o)
+		).collect(Collectors.toList());
 	}
 	
 	public static void main(String[] args) {
@@ -75,7 +78,7 @@ public class GildedRose {
 		}
 	}
 
-	public List<Item> getItems() {
+	public List<ReasonableItem> getItems() {
 		return pleasantlyNonStaticItems;
 	}
 	
