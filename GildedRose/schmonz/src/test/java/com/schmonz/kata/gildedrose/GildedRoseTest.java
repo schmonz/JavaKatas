@@ -248,12 +248,4 @@ public class GildedRoseTest {
 		assertEquals(previousSellIn + sellInChange, ordinaryElixir.getSellIn());
 		assertEquals(previousQuality + qualityChange, ordinaryElixir.getQuality());
 	}
-	
-	private ReasonableItem findThePasses(List<ReasonableItem> items) {
-		return items.stream().filter(o -> o instanceof Passes).findFirst().get();
-	}
-
-	private ReasonableItem findTheBrie(List<ReasonableItem> items) {
-		return items.stream().filter(o -> o instanceof Brie).findFirst().get();
-	}
 }
