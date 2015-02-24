@@ -68,14 +68,6 @@ public class ReasonableItem {
 		setSellIn(getSellIn() - 1);
 	}
 	
-	public boolean isBrie() {
-		return this instanceof Brie;
-	}
-	
-	public boolean isPasses() {
-		return this instanceof Passes;
-	}
-	
 	public boolean isSulfuras() {
 		return "Sulfuras, Hand of Ragnaros".equals(getName());
 	}
