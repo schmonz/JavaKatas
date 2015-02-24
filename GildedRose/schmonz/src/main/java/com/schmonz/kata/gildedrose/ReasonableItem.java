@@ -58,14 +58,14 @@ public class ReasonableItem {
 		}
 	}
 	
-	protected void incrementQualityBy(int increment) {
+	private void incrementQualityBy(int increment) {
 		int newQuality = getQuality() + increment;
 		if ((QUALITY_MIN <= newQuality) && (newQuality <= QUALITY_MAX)) {
 			setQuality(newQuality);
 		}
 	}
 
-	protected void decrementSellBy() {
+	private void decrementSellBy() {
 		setSellIn(getSellIn() - 1);
 	}
 }
