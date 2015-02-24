@@ -7,17 +7,18 @@ public class Passes extends ReasonableItem {
 	
 	public void updateQuality() {
 		if (getSellIn() <= 5) {
-			incrementQualityBy(3);
+			qualityIncrement = 3;
 		} else if (getSellIn() <= 10) {
-			incrementQualityBy(2);
+			qualityIncrement = 2;
 		} else {
-			incrementQualityBy(1);
+			qualityIncrement = 1;
 		}
-		
-		decrementSellBy();
-
+		super.updateQuality();
+	}
+	
+	protected void updateQualityIncrement() {
 		if (isPastSellByDate()) {
-			setQuality(QUALITY_MIN);
+			qualityIncrement = 0 - getQuality();
 		}
 	}
 }

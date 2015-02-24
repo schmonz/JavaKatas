@@ -47,10 +47,14 @@ public class ReasonableItem {
 	}
 	
 	public void updateQuality() {
-		incrementQualityBy(qualityIncrement);
 		decrementSellBy();
+		updateQualityIncrement();
+		incrementQualityBy(qualityIncrement);
+	}
+
+	protected void updateQualityIncrement() {
 		if (isPastSellByDate()) {
-			incrementQualityBy(qualityIncrement);
+			qualityIncrement = 2 * qualityIncrement;
 		}
 	}
 	
