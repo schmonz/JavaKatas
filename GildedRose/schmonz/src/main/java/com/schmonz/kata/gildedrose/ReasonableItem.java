@@ -39,9 +39,7 @@ public class ReasonableItem {
 	}
 	
 	public void updateQuality() {
-		if (isBrie()) {
-			incrementQualityBy(1);
-		} else if (isPasses()) {
+		if (isPasses()) {
 			if (getSellIn() <= 5) {
 				incrementQualityBy(3);
 			} else if (getSellIn() <= 10) {
@@ -60,15 +58,13 @@ public class ReasonableItem {
 		if (isPastSellByDate()) {
 			if (isPasses()) {
 				setQuality(QUALITY_MIN);
-			} else if (isBrie()) {
-				incrementQualityBy(1);
 			} else {
 				decrementQualityBy1UntilMin();
 			}
 		}
 	}
 	
-	private void incrementQualityBy(int increment) {
+	protected void incrementQualityBy(int increment) {
 		int newQuality = getQuality() + increment;
 		if (newQuality <= QUALITY_MAX) {
 			item.setQuality(newQuality);
@@ -83,7 +79,7 @@ public class ReasonableItem {
 		}
 	}
 
-	private void decrementSellBy() {
+	protected void decrementSellBy() {
 		setSellIn(getSellIn() - 1);
 	}
 	
@@ -103,7 +99,7 @@ public class ReasonableItem {
 		return isSulfuras();
 	}
 	
-	private boolean isPastSellByDate() {
+	protected boolean isPastSellByDate() {
 		return getSellIn() < 0;
 	}
 }
