@@ -10,23 +10,21 @@ import org.junit.Test;
 public class GildedRoseTest {
 	
 	@Test
-	public void initialState() {
-		GildedRose mindTheStore = new GildedRose();
-		List<Item> expectedItems = mindTheStore.defaultItems();
-		List<ReasonableItem> initialItems = mindTheStore.getItems();
-		assertNotNull(initialItems);
-		assertEquals(expectedItems.size(), initialItems.size());
+	public void noArgsConstructorProvidesDefaultItems() {
+		List<ReasonableItem> items = new GildedRose().getItems();
 		
-		for (int i = 0; i < expectedItems.size(); i++) {
-			Item expected = expectedItems.get(i);
-			ReasonableItem actual = initialItems.get(i);
-			
-			assertEquals(expected.getName(), actual.getName());
-			assertEquals(expected.getSellIn(), actual.getSellIn());
-			assertEquals(expected.getQuality(), actual.getQuality());
-			
-			assertTrue(actual.getQuality() >= ReasonableItem.QUALITY_MIN);
-		}
+		assertTrue(6 == items.size());
+	}
+	
+	@Test
+	public void oneArgConstructorSpecifiesItems() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Blueberry Frumpkin", 7, 90));
+		customItems.add(new Item("Ancient Novelty Bracelet", 12, 5));
+		
+		List<ReasonableItem> items = new GildedRose(customItems).getItems();
+		
+		assertTrue(2 == items.size());
 	}
 
 	@Test
