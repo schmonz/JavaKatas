@@ -6,10 +6,14 @@ public class ReasonableItem {
 	public static final int QUALITY_MAX = 50;
 	public static final int QUALITY_MIN = 0;
 
-    public ReasonableItem(String name, int sellIn, int quality) {
-    	item = new Item(name, sellIn, quality);
-    }
-    
+	public static ReasonableItem create(Item item) {
+		if ("Aged Brie".equals(item.getName())) {
+			return new Brie(item);
+		} else {
+			return new ReasonableItem(item);
+		}
+	}
+
     public ReasonableItem(Item unreasonableItem) {
     	item = unreasonableItem;
     }
@@ -84,7 +88,7 @@ public class ReasonableItem {
 	}
 	
 	public boolean isBrie() {
-		return "Aged Brie".equals(getName());
+		return "com.schmonz.kata.gildedrose.Brie".equals(getClass().getName());
 	}
 	
 	public boolean isPasses() {

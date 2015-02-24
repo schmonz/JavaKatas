@@ -17,7 +17,7 @@ public class GildedRose {
 
 	public GildedRose(List<Item> someItems) {
 		this.pleasantlyNonStaticItems = someItems.stream().map(
-				o -> new ReasonableItem(o)
+				o -> ReasonableItem.create(o)
 		).collect(Collectors.toList());
 	}
 	
