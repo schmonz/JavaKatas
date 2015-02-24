@@ -32,7 +32,7 @@ public class GildedRoseTest {
 		
 		for (int i = 0; i < expectedItems.size(); i++) {
 			Item expected = expectedItems.get(i);
-			Item actual = initialItems.get(i);
+			ReasonableItem actual = initialItems.get(i);
 			
 			assertEquals(expected.getName(), actual.getName());
 			assertEquals(expected.getSellIn(), actual.getSellIn());
@@ -45,7 +45,7 @@ public class GildedRoseTest {
 	@Test
 	public void canUpdateQualityAndSellIn() {
 		GildedRose mindTheStore = new GildedRose();
-		Item ordinaryVest = mindTheStore.getItems().get(0);
+		ReasonableItem ordinaryVest = mindTheStore.getItems().get(0);
 		
 		updateAllAndAssertOne(mindTheStore, ordinaryVest, -1, -1);
 	}
@@ -53,7 +53,7 @@ public class GildedRoseTest {
 	@Test
 	public void canUpdateAgedBrie() {
 		GildedRose mindTheStore = new GildedRose();
-		Item theBrie = findTheBrie(mindTheStore.getItems());
+		ReasonableItem theBrie = findTheBrie(mindTheStore.getItems());
 
 		updateAllAndAssertOne(mindTheStore, theBrie, -1, 1);
 		updateAllAndAssertOne(mindTheStore, theBrie, -1, 1);
@@ -67,7 +67,7 @@ public class GildedRoseTest {
 	@Test
 	public void canUpdateBackstagePasses() {
 		GildedRose mindTheStore = new GildedRose();
-		Item thePasses = findThePasses(mindTheStore.getItems());
+		ReasonableItem thePasses = findThePasses(mindTheStore.getItems());
 		
 		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
 		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
@@ -105,7 +105,7 @@ public class GildedRoseTest {
 		
 		for (int i = 0; i < 2 * GildedRose.QUALITY_MAX; i++) {
 			mindTheStore.updateQuality();
-			for (Item item : items) {
+			for (ReasonableItem item : items) {
 				if (mindTheStore.isSulfuras(item)) {
 					assertTrue(item.getQuality() == 80);
 				} else {
@@ -119,7 +119,7 @@ public class GildedRoseTest {
 	@Test
 	public void canDegradeQuality2xAfterSellByDate() {
 		GildedRose mindTheStore = new GildedRose();
-		Item ordinaryElixir = mindTheStore.getItems().get(2);
+		ReasonableItem ordinaryElixir = mindTheStore.getItems().get(2);
 
 		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
 		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
@@ -138,20 +138,20 @@ public class GildedRoseTest {
 		assertTrue(ordinaryElixir.getQuality() >= 0);
 }
 
-	private void updateAllAndAssertOne(GildedRose store, Item item, int sellInChange, int qualityChange) {
-		int previousSellIn = item.getSellIn();
-		int previousQuality = item.getQuality();
+	private void updateAllAndAssertOne(GildedRose store, ReasonableItem ordinaryElixir, int sellInChange, int qualityChange) {
+		int previousSellIn = ordinaryElixir.getSellIn();
+		int previousQuality = ordinaryElixir.getQuality();
 		store.updateQuality();
-		assertEquals(previousSellIn + sellInChange, item.getSellIn());
-		assertEquals(previousQuality + qualityChange, item.getQuality());
+		assertEquals(previousSellIn + sellInChange, ordinaryElixir.getSellIn());
+		assertEquals(previousQuality + qualityChange, ordinaryElixir.getQuality());
 	}
 	
-	private Item findThePasses(List<ReasonableItem> items) {
+	private ReasonableItem findThePasses(List<ReasonableItem> items) {
 	    return items.stream().filter(o -> new GildedRose().isPasses(o)).findFirst().get();
 	}
 
-	private Item findTheBrie(List<ReasonableItem> list) {
-	    return list.stream().filter(o -> new GildedRose().isBrie(o)).findFirst().get();
+	private ReasonableItem findTheBrie(List<ReasonableItem> items) {
+	    return items.stream().filter(o -> new GildedRose().isBrie(o)).findFirst().get();
 	}
 	
 	/* MENTAL STACK:

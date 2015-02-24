@@ -47,7 +47,7 @@ public class GildedRose {
 	}
 
 	public void updateQuality() {
-		for (Item each : pleasantlyNonStaticItems) {
+		for (ReasonableItem each : pleasantlyNonStaticItems) {
 			if (isBrie(each)) {
 				incrementQualityBy(each, 1);
 			} else if (isPasses(each)) {
@@ -82,43 +82,43 @@ public class GildedRose {
 		return pleasantlyNonStaticItems;
 	}
 	
-	private void incrementQualityBy(Item item, int increment) {
+	private void incrementQualityBy(ReasonableItem item, int increment) {
 		int newQuality = item.getQuality() + increment;
 		if (newQuality <= QUALITY_MAX) {
 			item.setQuality(newQuality);
 		}
 	}
 
-	private void decrementQualityBy1UntilMin(Item each) {
-		if (!isLegendary(each)) {
-			if (each.getQuality() > QUALITY_MIN) {
-				incrementQualityBy(each, -1);
+	private void decrementQualityBy1UntilMin(ReasonableItem item) {
+		if (!isLegendary(item)) {
+			if (item.getQuality() > QUALITY_MIN) {
+				incrementQualityBy(item, -1);
 			}
 		}
 	}
 
-	private void decrementSellBy(Item each) {
-		each.setSellIn(each.getSellIn() - 1);
+	private void decrementSellBy(ReasonableItem item) {
+		item.setSellIn(item.getSellIn() - 1);
 	}
 
-	public boolean isBrie(Item item) {
-		return "Aged Brie".equals(item.name);
+	public boolean isBrie(ReasonableItem item) {
+		return "Aged Brie".equals(item.getName());
 	}
 	
-	public boolean isPasses(Item item) {
-		return "Backstage passes to a TAFKAL80ETC concert".equals(item.name);
+	public boolean isPasses(ReasonableItem item) {
+		return "Backstage passes to a TAFKAL80ETC concert".equals(item.getName());
 	}
 	
-	public boolean isSulfuras(Item item) {
-		return "Sulfuras, Hand of Ragnaros".equals(item.name);
+	public boolean isSulfuras(ReasonableItem item) {
+		return "Sulfuras, Hand of Ragnaros".equals(item.getName());
 	}
 	
-	private boolean isLegendary(Item item) {
+	private boolean isLegendary(ReasonableItem item) {
 		return isSulfuras(item);
 	}
 	
-	private boolean isPastSellByDate(Item each) {
-		return each.getSellIn() < 0;
+	private boolean isPastSellByDate(ReasonableItem item) {
+		return item.getSellIn() < 0;
 	}
 
 }
