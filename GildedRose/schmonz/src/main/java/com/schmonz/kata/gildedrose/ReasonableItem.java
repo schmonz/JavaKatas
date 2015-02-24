@@ -41,29 +41,24 @@ public class ReasonableItem {
 	}
 	
 	public void updateQuality() {
-		decrementQualityBy1UntilMin();
+		incrementQualityBy(-1);
 
 		if (!isLegendary()) {
 			decrementSellBy();
 		}
 
 		if (isPastSellByDate()) {
-			decrementQualityBy1UntilMin();
+			incrementQualityBy(-1);
 		}
 	}
 	
 	protected void incrementQualityBy(int increment) {
-		int newQuality = getQuality() + increment;
-		if (newQuality <= QUALITY_MAX) {
-			item.setQuality(newQuality);
+		if (isLegendary()) {
+			return;
 		}
-	}
-
-	private void decrementQualityBy1UntilMin() {
-		if (!isLegendary()) {
-			if (getQuality() > QUALITY_MIN) {
-				incrementQualityBy(-1);
-			}
+		int newQuality = getQuality() + increment;
+		if ((QUALITY_MIN <= newQuality) && (newQuality <= QUALITY_MAX)) {
+			setQuality(newQuality);
 		}
 	}
 
