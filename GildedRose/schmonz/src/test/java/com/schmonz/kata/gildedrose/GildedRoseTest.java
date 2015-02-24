@@ -38,7 +38,7 @@ public class GildedRoseTest {
 			assertEquals(expected.getSellIn(), actual.getSellIn());
 			assertEquals(expected.getQuality(), actual.getQuality());
 			
-			assertTrue(actual.getQuality() >= GildedRose.QUALITY_MIN);
+			assertTrue(actual.getQuality() >= ReasonableItem.QUALITY_MIN);
 		}
 	}
 
@@ -103,14 +103,14 @@ public class GildedRoseTest {
 		GildedRose mindTheStore = new GildedRose();
 		List<ReasonableItem> items = mindTheStore.getItems();
 		
-		for (int i = 0; i < 2 * GildedRose.QUALITY_MAX; i++) {
+		for (int i = 0; i < 2 * ReasonableItem.QUALITY_MAX; i++) {
 			mindTheStore.updateQuality();
 			for (ReasonableItem item : items) {
-				if (mindTheStore.isSulfuras(item)) {
+				if (item.isSulfuras()) {
 					assertTrue(item.getQuality() == 80);
 				} else {
-					assertTrue(item.getQuality() <= GildedRose.QUALITY_MAX);
-					assertTrue(item.getQuality() >= GildedRose.QUALITY_MIN);
+					assertTrue(item.getQuality() <= ReasonableItem.QUALITY_MAX);
+					assertTrue(item.getQuality() >= ReasonableItem.QUALITY_MIN);
 				}
 			}
 		}
@@ -147,11 +147,11 @@ public class GildedRoseTest {
 	}
 	
 	private ReasonableItem findThePasses(List<ReasonableItem> items) {
-	    return items.stream().filter(o -> new GildedRose().isPasses(o)).findFirst().get();
+	    return items.stream().filter(o -> o.isPasses()).findFirst().get();
 	}
 
 	private ReasonableItem findTheBrie(List<ReasonableItem> items) {
-	    return items.stream().filter(o -> new GildedRose().isBrie(o)).findFirst().get();
+	    return items.stream().filter(o -> o.isBrie()).findFirst().get();
 	}
 	
 	/* MENTAL STACK:
