@@ -9,6 +9,8 @@ public class ReasonableItem {
 	public static ReasonableItem create(Item item) {
 		if ("Aged Brie".equals(item.getName())) {
 			return new Brie(item);
+		} else if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
+			return new Passes(item);
 		} else {
 			return new ReasonableItem(item);
 		}
@@ -39,28 +41,14 @@ public class ReasonableItem {
 	}
 	
 	public void updateQuality() {
-		if (isPasses()) {
-			if (getSellIn() <= 5) {
-				incrementQualityBy(3);
-			} else if (getSellIn() <= 10) {
-				incrementQualityBy(2);
-			} else {
-				incrementQualityBy(1);
-			}
-		} else {
-			decrementQualityBy1UntilMin();
-		}
+		decrementQualityBy1UntilMin();
 
 		if (!isLegendary()) {
 			decrementSellBy();
 		}
 
 		if (isPastSellByDate()) {
-			if (isPasses()) {
-				setQuality(QUALITY_MIN);
-			} else {
-				decrementQualityBy1UntilMin();
-			}
+			decrementQualityBy1UntilMin();
 		}
 	}
 	
@@ -88,7 +76,7 @@ public class ReasonableItem {
 	}
 	
 	public boolean isPasses() {
-		return "Backstage passes to a TAFKAL80ETC concert".equals(getName());
+		return "com.schmonz.kata.gildedrose.Passes".equals(getClass().getName());
 	}
 	
 	public boolean isSulfuras() {
