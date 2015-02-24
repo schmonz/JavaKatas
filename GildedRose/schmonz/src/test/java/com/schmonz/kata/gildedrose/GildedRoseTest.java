@@ -147,11 +147,11 @@ public class GildedRoseTest {
 	}
 	
 	private ReasonableItem findThePasses(List<ReasonableItem> items) {
-	    return items.stream().filter(o -> o.isPasses()).findFirst().get();
+		return items.stream().filter(o -> o.isPasses()).findFirst().get();
 	}
 
 	private ReasonableItem findTheBrie(List<ReasonableItem> items) {
-	    return items.stream().filter(o -> o.isBrie()).findFirst().get();
+		return items.stream().filter(o -> o.isBrie()).findFirst().get();
 	}
 	
 	/* MENTAL STACK:

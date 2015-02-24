@@ -14,9 +14,9 @@ public class ReasonableItem {
 		}
 	}
 
-    public ReasonableItem(Item unreasonableItem) {
-    	item = unreasonableItem;
-    }
+	public ReasonableItem(Item unreasonableItem) {
+		item = unreasonableItem;
+	}
 
 	public int getSellIn() {
 		return item.getSellIn();
