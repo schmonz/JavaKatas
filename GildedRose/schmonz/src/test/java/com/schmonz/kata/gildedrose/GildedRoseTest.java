@@ -100,47 +100,80 @@ public class GildedRoseTest {
 		customItems.add(new Item("Aged Brie", 2, 0));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
-		ReasonableItem ordinaryItem = mindTheStore.getItems().get(0);
+		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
 		mindTheStore.updateQuality();
 		mindTheStore.updateQuality();
 		mindTheStore.updateQuality();
 		
-		assertEquals(-1, ordinaryItem.getSellIn());
-		assertEquals(4, ordinaryItem.getQuality());
+		assertEquals(-1, agedBrie.getSellIn());
+		assertEquals(4, agedBrie.getQuality());
 	}
 	
 	@Test
-	public void canUpdateBackstagePasses() {
-		GildedRose mindTheStore = new GildedRose();
-		ReasonableItem thePasses = findThePasses(mindTheStore.getItems());
+	public void insertOnePasses() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 11, 13));
 		
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 1);
-		assertEquals(10, thePasses.getSellIn());
-		assertEquals(25, thePasses.getQuality());
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
 		
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 2);
-		assertEquals(5, thePasses.getSellIn());
-		assertEquals(35, thePasses.getQuality());
-
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, 3);
-		assertEquals(0, thePasses.getSellIn());
-		assertEquals(50, thePasses.getQuality());
-
-		updateAllAndAssertOne(mindTheStore, thePasses, -1, -50);
-		assertEquals(-1, thePasses.getSellIn());
-		assertEquals(0, thePasses.getQuality());
+		assertEquals(11, backstagePasses.getSellIn());
+		assertEquals(13, backstagePasses.getQuality());
+	}
+	
+	@Test
+	public void updateOnePasses() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 11, 13));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		
+		assertEquals(10, backstagePasses.getSellIn());
+		assertEquals(14, backstagePasses.getQuality());
+	}
+	
+	@Test
+	public void updateOnePassesPast10DaysLeft() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 11, 13));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		
+		assertEquals(9, backstagePasses.getSellIn());
+		assertEquals(16, backstagePasses.getQuality());
+	}
+	
+	@Test
+	public void updateOnePassesPast5DaysLeft() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 6, 13));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		
+		assertEquals(4, backstagePasses.getSellIn());
+		assertEquals(18, backstagePasses.getQuality());
+	}
+	
+	@Test
+	public void updateOnePassesPastSellByDate() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 1, 13));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		
+		assertEquals(-1, backstagePasses.getSellIn());
+		assertEquals(0, backstagePasses.getQuality());
 	}
 	
 	@Test
