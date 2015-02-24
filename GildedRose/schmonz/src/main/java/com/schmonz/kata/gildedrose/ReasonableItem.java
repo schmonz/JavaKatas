@@ -2,6 +2,7 @@ package com.schmonz.kata.gildedrose;
 
 public class ReasonableItem {
 	private Item item;
+	protected int qualityIncrement;
 
 	public static final int QUALITY_MAX = 50;
 	public static final int QUALITY_MIN = 0;
@@ -22,6 +23,7 @@ public class ReasonableItem {
 
 	public ReasonableItem(Item unreasonableItem) {
 		item = unreasonableItem;
+		qualityIncrement = -1;
 	}
 
 	public int getSellIn() {
@@ -45,10 +47,10 @@ public class ReasonableItem {
 	}
 	
 	public void updateQuality() {
-		incrementQualityBy(-1);
+		incrementQualityBy(qualityIncrement);
 		decrementSellBy();
 		if (isPastSellByDate()) {
-			incrementQualityBy(-1);
+			incrementQualityBy(qualityIncrement);
 		}
 	}
 	
