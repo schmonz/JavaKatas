@@ -5,17 +5,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class GildedRoseTest {
 	
-	@Before
-	public void superHackySetup() {
-		GildedRose.inTestMode = true;
-		GildedRose.main(null);
-	}
-
 	@Test
 	public void initialState() {
 		List<Item> expectedItems = new ArrayList<Item>();
@@ -136,7 +129,7 @@ public class GildedRoseTest {
 		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, 0);
 		assertEquals(-2, ordinaryElixir.getSellIn());
 		assertTrue(ordinaryElixir.getQuality() >= 0);
-}
+	}
 
 	private void updateAllAndAssertOne(GildedRose store, ReasonableItem ordinaryElixir, int sellInChange, int qualityChange) {
 		int previousSellIn = ordinaryElixir.getSellIn();
@@ -153,22 +146,9 @@ public class GildedRoseTest {
 	private ReasonableItem findTheBrie(List<ReasonableItem> items) {
 		return items.stream().filter(o -> o.isBrie()).findFirst().get();
 	}
-	
-	/* MENTAL STACK:
-	 * deconstruct updateQuality()
-	 * stop needing superHackySetup()
-	 * the doubling of quality change after sell-by goes for Brie, too
-	 */
 }
 
 /*
-
-# Constraints
-
-- Can't change the Item class
-- Can't change the items property
-- Can change updateQuality(), provided nothing breaks
-
 
 # Assignment
 

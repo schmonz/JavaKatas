@@ -6,17 +6,24 @@ import java.util.stream.Collectors;
 
 public class GildedRose {
 
-	private static List<Item> items = null;
-	static boolean inTestMode = false;
+	private List<Item> items;
 	
-	private List<ReasonableItem> pleasantlyNonStaticItems;
+	private List<ReasonableItem> reasonableItems;
 
 	public GildedRose() {
-		this(items);
+		items = new ArrayList<Item>();
+		items.add(new Item("+5 Dexterity Vest", 10, 20));
+		items.add(new Item("Aged Brie", 2, 0));
+		items.add(new Item("Elixir of the Mongoose", 5, 7));
+		items.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
+		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
+		items.add(new Item("Conjured Mana Cake", 3, 6));
+		
+		this.reasonableItems = items2reasonable(items);
 	}
-
-	public GildedRose(List<Item> someItems) {
-		this.pleasantlyNonStaticItems = someItems.stream().map(
+	
+	private List<ReasonableItem> items2reasonable (List<Item> someItems) {
+		return someItems.stream().map(
 				o -> ReasonableItem.create(o)
 		).collect(Collectors.toList());
 	}
@@ -24,33 +31,16 @@ public class GildedRose {
 	public static void main(String[] args) {
 		System.out.println("OMGHAI!");
 
-		items = initializeInventory();
-
-		GildedRose mindTheStore = new GildedRose(items);
-		if (!inTestMode) {
-			mindTheStore.updateQuality();
-		}
+		new GildedRose().updateQuality();
 	}
 	
-	private static List<Item> initializeInventory() {
-		List<Item> defaultItems = new ArrayList<Item>();
-		defaultItems.add(new Item("+5 Dexterity Vest", 10, 20));
-		defaultItems.add(new Item("Aged Brie", 2, 0));
-		defaultItems.add(new Item("Elixir of the Mongoose", 5, 7));
-		defaultItems.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
-		defaultItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
-		defaultItems.add(new Item("Conjured Mana Cake", 3, 6));
-		return defaultItems;
-	}
-
 	public void updateQuality() {
-		for (ReasonableItem each : pleasantlyNonStaticItems) {
+		for (ReasonableItem each : reasonableItems) {
 			each.updateQuality();
 		}
 	}
 
 	public List<ReasonableItem> getItems() {
-		return pleasantlyNonStaticItems;
+		return reasonableItems;
 	}
-	
 }
