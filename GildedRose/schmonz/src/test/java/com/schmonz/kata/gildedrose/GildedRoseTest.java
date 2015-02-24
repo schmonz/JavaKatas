@@ -2,7 +2,6 @@ package com.schmonz.kata.gildedrose;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -11,15 +10,9 @@ public class GildedRoseTest {
 	
 	@Test
 	public void initialState() {
-		List<Item> expectedItems = new ArrayList<Item>();
-		expectedItems.add(new Item("+5 Dexterity Vest", 10, 20));
-		expectedItems.add(new Item("Aged Brie", 2, 0));
-		expectedItems.add(new Item("Elixir of the Mongoose", 5, 7));
-		expectedItems.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
-		expectedItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
-		expectedItems.add(new Item("Conjured Mana Cake", 3, 6));
-
-		List<ReasonableItem> initialItems = new GildedRose().getItems();
+		GildedRose mindTheStore = new GildedRose();
+		List<Item> expectedItems = mindTheStore.defaultItems();
+		List<ReasonableItem> initialItems = mindTheStore.getItems();
 		assertNotNull(initialItems);
 		assertEquals(expectedItems.size(), initialItems.size());
 		

@@ -11,18 +11,22 @@ public class GildedRose {
 	private List<ReasonableItem> reasonableItems;
 
 	public GildedRose() {
-		items = new ArrayList<Item>();
-		items.add(new Item("+5 Dexterity Vest", 10, 20));
-		items.add(new Item("Aged Brie", 2, 0));
-		items.add(new Item("Elixir of the Mongoose", 5, 7));
-		items.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
-		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
-		items.add(new Item("Conjured Mana Cake", 3, 6));
-		
+		items = defaultItems();
 		this.reasonableItems = items2reasonable(items);
 	}
 	
-	private List<ReasonableItem> items2reasonable (List<Item> someItems) {
+	protected List<Item> defaultItems() {
+		List<Item> someItems = new ArrayList<Item>();
+		someItems.add(new Item("+5 Dexterity Vest", 10, 20));
+		someItems.add(new Item("Aged Brie", 2, 0));
+		someItems.add(new Item("Elixir of the Mongoose", 5, 7));
+		someItems.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
+		someItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
+		someItems.add(new Item("Conjured Mana Cake", 3, 6));
+		return someItems;
+	}
+	
+	private List<ReasonableItem> items2reasonable(List<Item> someItems) {
 		return someItems.stream().map(
 				o -> ReasonableItem.create(o)
 		).collect(Collectors.toList());
