@@ -13,7 +13,7 @@ public class GildedRoseTest {
 	public void noArgsConstructorProvidesDefaultItems() {
 		List<ReasonableItem> items = new GildedRose().getItems();
 		
-		assertTrue(6 == items.size());
+		assertEquals(6, items.size());
 	}
 	
 	@Test
@@ -24,15 +24,32 @@ public class GildedRoseTest {
 		
 		List<ReasonableItem> items = new GildedRose(customItems).getItems();
 		
-		assertTrue(2 == items.size());
+		assertEquals(2, items.size());
 	}
 
 	@Test
-	public void canUpdateQualityAndSellIn() {
-		GildedRose mindTheStore = new GildedRose();
-		ReasonableItem ordinaryVest = mindTheStore.getItems().get(0);
+	public void insertOneOrdinaryItem() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Nothing Special", 11, 17));
 		
-		updateAllAndAssertOne(mindTheStore, ordinaryVest, -1, -1);
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem ordinaryItem = mindTheStore.getItems().get(0);
+		
+		assertEquals(11, ordinaryItem.getSellIn());
+		assertEquals(17, ordinaryItem.getQuality());
+	}
+	
+	@Test
+	public void updateOneOrdinaryItem() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Nothing Special", 11, 17));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem ordinaryItem = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		
+		assertEquals(10, ordinaryItem.getSellIn());
+		assertEquals(16, ordinaryItem.getQuality());
 	}
 	
 	@Test
