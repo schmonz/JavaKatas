@@ -98,6 +98,34 @@ public class GildedRoseTest {
 	}
 	
 	@Test
+	public void updateOneBriePastSellByDateToMaxQuality() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Aged Brie", 2, 48));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		
+		assertUpdatedItem(agedBrie, -1, 50);
+	}
+	
+	@Test
+	public void updateOneBriePastSellByDateToMaxQualityUnlessInexact() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Aged Brie", 2, 47));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		
+		assertUpdatedItem(agedBrie, -1, 49);
+	}
+	
+	@Test
 	public void updateOnePasses() {
 		List<Item> customItems = new ArrayList<Item>();
 		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 11, 13));
@@ -136,6 +164,19 @@ public class GildedRoseTest {
 	}
 	
 	@Test
+	public void updateOnePassesPast5DaysLeftToMaxQuality() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 3, 47));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		
+		assertUpdatedItem(backstagePasses, 1, 50);
+	}
+	
+	@Test
 	public void updateOnePassesPastSellByDate() {
 		List<Item> customItems = new ArrayList<Item>();
 		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 1, 13));
@@ -159,9 +200,6 @@ public class GildedRoseTest {
 		
 		assertUpdatedItem(sulfuras, 0, 77);
 	}
-	
-	//XXX unit-test combinations of items?
-	//XXX unit-test the default items?
 	
 	@Test
 	public void updateOneManaCake() {
@@ -187,52 +225,7 @@ public class GildedRoseTest {
 		
 		assertUpdatedItem(cake, -1, 3);
 	}
-	
-	@Test
-	public void cannotUpdateQualityTooHighOrTooLow() {
-		GildedRose mindTheStore = new GildedRose();
-		List<ReasonableItem> items = mindTheStore.getItems();
-		
-		for (int i = 0; i < 2 * ReasonableItem.QUALITY_MAX; i++) {
-			mindTheStore.updateQuality();
-			for (ReasonableItem item : items) {
-				if (item instanceof Sulfuras) {
-					assertTrue(item.getQuality() == 80);
-				} else {
-					assertTrue(item.getQuality() <= ReasonableItem.QUALITY_MAX);
-					assertTrue(item.getQuality() >= ReasonableItem.QUALITY_MIN);
-				}
-			}
-		}
-	}
-	
-	@Test
-	public void canDegradeQuality2xAfterSellByDate() {
-		GildedRose mindTheStore = new GildedRose();
-		ReasonableItem ordinaryElixir = mindTheStore.getItems().get(2);
-
-		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
-		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
-		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
-		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
-		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -1);
-		assertEquals(0, ordinaryElixir.getSellIn());
-		assertEquals(2, ordinaryElixir.getQuality());
-		
-		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, -2);
-		assertEquals(-1, ordinaryElixir.getSellIn());
-		assertEquals(0, ordinaryElixir.getQuality());
-
-		updateAllAndAssertOne(mindTheStore, ordinaryElixir, -1, 0);
-		assertEquals(-2, ordinaryElixir.getSellIn());
-		assertTrue(ordinaryElixir.getQuality() >= 0);
-	}
-
-	private void updateAllAndAssertOne(GildedRose store, ReasonableItem ordinaryElixir, int sellInChange, int qualityChange) {
-		int previousSellIn = ordinaryElixir.getSellIn();
-		int previousQuality = ordinaryElixir.getQuality();
-		store.updateQuality();
-		assertEquals(previousSellIn + sellInChange, ordinaryElixir.getSellIn());
-		assertEquals(previousQuality + qualityChange, ordinaryElixir.getQuality());
-	}
 }
+
+//XXX unit-test combinations of items?
+
