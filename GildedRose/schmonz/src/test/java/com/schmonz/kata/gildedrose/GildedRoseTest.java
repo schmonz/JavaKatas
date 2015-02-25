@@ -177,6 +177,35 @@ public class GildedRoseTest {
 	}
 	
 	@Test
+	public void insertOneSulfuras() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Sulfuras, Hand of Ragnaros", 0, 77));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem sulfuras = mindTheStore.getItems().get(0);
+		
+		assertEquals(0, sulfuras.getSellIn());
+		assertEquals(77, sulfuras.getQuality());
+	}
+	
+	@Test
+	public void updateOneSulfuras() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Sulfuras, Hand of Ragnaros", 0, 77));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem sulfuras = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		
+		assertEquals(0, sulfuras.getSellIn());
+		assertEquals(77, sulfuras.getQuality());
+	}
+	
+	//XXX unit-test ManaCake (conjured)
+	//XXX unit-test combinations of items?
+	//XXX unit-test the default items?
+	
+	@Test
 	public void canUpdateConjuredThingy() {
 		GildedRose mindTheStore = new GildedRose();
 		ReasonableItem conjuredThingy = mindTheStore.getItems().get(5);
