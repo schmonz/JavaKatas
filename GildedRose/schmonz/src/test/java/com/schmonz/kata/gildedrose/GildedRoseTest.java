@@ -201,33 +201,46 @@ public class GildedRoseTest {
 		assertEquals(77, sulfuras.getQuality());
 	}
 	
-	//XXX unit-test ManaCake (conjured)
 	//XXX unit-test combinations of items?
 	//XXX unit-test the default items?
 	
 	@Test
-	public void canUpdateConjuredThingy() {
-		GildedRose mindTheStore = new GildedRose();
-		ReasonableItem conjuredThingy = mindTheStore.getItems().get(5);
-		
-		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
-		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
-		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
-		assertEquals(0, conjuredThingy.getSellIn());
-		assertEquals(0, conjuredThingy.getQuality());
-		
+	public void insertOneManaCake() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Conjured Mana Cake", 3, 15));
-		mindTheStore = new GildedRose(customItems);
-		conjuredThingy = mindTheStore.getItems().get(0);
+		customItems.add(new Item("Conjured Mana Cake", 7, 15));
 		
-		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
-		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
-		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -2);
-		assertEquals(0, conjuredThingy.getSellIn());
-		assertEquals(9, conjuredThingy.getQuality());
-
-		updateAllAndAssertOne(mindTheStore, conjuredThingy, -1, -4);
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem cake = mindTheStore.getItems().get(0);
+		
+		assertEquals(7, cake.getSellIn());
+		assertEquals(15, cake.getQuality());
+	}
+	
+	@Test
+	public void updateOneManaCake() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Conjured Mana Cake", 7, 15));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem cake = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		
+		assertEquals(6, cake.getSellIn());
+		assertEquals(13, cake.getQuality());
+	}
+	
+	@Test
+	public void updateOneManaCakePastSellByDate() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Conjured Mana Cake", 1, 9));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		ReasonableItem cake = mindTheStore.getItems().get(0);
+		mindTheStore.updateQuality();
+		mindTheStore.updateQuality();
+		
+		assertEquals(-1, cake.getSellIn());
+		assertEquals(3, cake.getQuality());
 	}
 	
 	@Test
