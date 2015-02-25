@@ -70,18 +70,6 @@ public class GildedRoseTest {
 	}
 	
 	@Test
-	public void insertOneBrie() {
-		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Aged Brie", 5, 7));
-		
-		GildedRose mindTheStore = new GildedRose(customItems);
-		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
-		
-		assertEquals(5, agedBrie.getSellIn());
-		assertEquals(7, agedBrie.getQuality());
-	}
-	
-	@Test
 	public void updateOneBrie() {
 		List<Item> customItems = new ArrayList<Item>();
 		customItems.add(new Item("Aged Brie", 5, 7));
@@ -107,18 +95,6 @@ public class GildedRoseTest {
 		
 		assertEquals(-1, agedBrie.getSellIn());
 		assertEquals(4, agedBrie.getQuality());
-	}
-	
-	@Test
-	public void insertOnePasses() {
-		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 11, 13));
-		
-		GildedRose mindTheStore = new GildedRose(customItems);
-		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
-		
-		assertEquals(11, backstagePasses.getSellIn());
-		assertEquals(13, backstagePasses.getQuality());
 	}
 	
 	@Test
@@ -177,18 +153,6 @@ public class GildedRoseTest {
 	}
 	
 	@Test
-	public void insertOneSulfuras() {
-		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Sulfuras, Hand of Ragnaros", 0, 77));
-		
-		GildedRose mindTheStore = new GildedRose(customItems);
-		ReasonableItem sulfuras = mindTheStore.getItems().get(0);
-		
-		assertEquals(0, sulfuras.getSellIn());
-		assertEquals(77, sulfuras.getQuality());
-	}
-	
-	@Test
 	public void updateOneSulfuras() {
 		List<Item> customItems = new ArrayList<Item>();
 		customItems.add(new Item("Sulfuras, Hand of Ragnaros", 0, 77));
@@ -203,18 +167,6 @@ public class GildedRoseTest {
 	
 	//XXX unit-test combinations of items?
 	//XXX unit-test the default items?
-	
-	@Test
-	public void insertOneManaCake() {
-		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Conjured Mana Cake", 7, 15));
-		
-		GildedRose mindTheStore = new GildedRose(customItems);
-		ReasonableItem cake = mindTheStore.getItems().get(0);
-		
-		assertEquals(7, cake.getSellIn());
-		assertEquals(15, cake.getQuality());
-	}
 	
 	@Test
 	public void updateOneManaCake() {
