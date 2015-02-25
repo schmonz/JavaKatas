@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class GildedRose {
 
-	private List<Item> items;
+	@SuppressWarnings("unused") private List<Item> items;
 	private List<ReasonableItem> reasonableItems;
 
 	public GildedRose() {
