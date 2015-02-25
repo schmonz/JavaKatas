@@ -26,7 +26,12 @@ public class GildedRoseTest {
 		
 		assertEquals(2, items.size());
 	}
-
+	
+	private void assertUpdatedItem(ReasonableItem item, int sellIn, int quality) {
+		assertEquals(sellIn, item.getSellIn());
+		assertEquals(quality, item.getQuality());
+	}
+	
 	@Test
 	public void insertOneOrdinaryItem() {
 		List<Item> customItems = new ArrayList<Item>();
@@ -35,8 +40,7 @@ public class GildedRoseTest {
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem ordinaryItem = mindTheStore.getItems().get(0);
 		
-		assertEquals(11, ordinaryItem.getSellIn());
-		assertEquals(17, ordinaryItem.getQuality());
+		assertUpdatedItem(ordinaryItem, 11, 17);
 	}
 	
 	@Test
@@ -48,8 +52,7 @@ public class GildedRoseTest {
 		ReasonableItem ordinaryItem = mindTheStore.getItems().get(0);
 		mindTheStore.updateQuality();
 		
-		assertEquals(10, ordinaryItem.getSellIn());
-		assertEquals(16, ordinaryItem.getQuality());
+		assertUpdatedItem(ordinaryItem, 10, 16);
 	}
 	
 	@Test
@@ -65,8 +68,7 @@ public class GildedRoseTest {
 		mindTheStore.updateQuality();
 		mindTheStore.updateQuality();
 		
-		assertEquals(-1, ordinaryItem.getSellIn());
-		assertEquals(0, ordinaryItem.getQuality());
+		assertUpdatedItem(ordinaryItem, -1, 0);
 	}
 	
 	@Test
@@ -78,8 +80,7 @@ public class GildedRoseTest {
 		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
 		mindTheStore.updateQuality();
 		
-		assertEquals(4, agedBrie.getSellIn());
-		assertEquals(8, agedBrie.getQuality());
+		assertUpdatedItem(agedBrie, 4, 8);
 	}
 	
 	@Test
@@ -93,8 +94,7 @@ public class GildedRoseTest {
 		mindTheStore.updateQuality();
 		mindTheStore.updateQuality();
 		
-		assertEquals(-1, agedBrie.getSellIn());
-		assertEquals(4, agedBrie.getQuality());
+		assertUpdatedItem(agedBrie, -1, 4);
 	}
 	
 	@Test
@@ -106,8 +106,7 @@ public class GildedRoseTest {
 		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
 		mindTheStore.updateQuality();
 		
-		assertEquals(10, backstagePasses.getSellIn());
-		assertEquals(14, backstagePasses.getQuality());
+		assertUpdatedItem(backstagePasses, 10, 14);
 	}
 	
 	@Test
@@ -120,8 +119,7 @@ public class GildedRoseTest {
 		mindTheStore.updateQuality();
 		mindTheStore.updateQuality();
 		
-		assertEquals(9, backstagePasses.getSellIn());
-		assertEquals(16, backstagePasses.getQuality());
+		assertUpdatedItem(backstagePasses, 9, 16);
 	}
 	
 	@Test
@@ -134,8 +132,7 @@ public class GildedRoseTest {
 		mindTheStore.updateQuality();
 		mindTheStore.updateQuality();
 		
-		assertEquals(4, backstagePasses.getSellIn());
-		assertEquals(18, backstagePasses.getQuality());
+		assertUpdatedItem(backstagePasses, 4, 18);
 	}
 	
 	@Test
@@ -148,8 +145,7 @@ public class GildedRoseTest {
 		mindTheStore.updateQuality();
 		mindTheStore.updateQuality();
 		
-		assertEquals(-1, backstagePasses.getSellIn());
-		assertEquals(0, backstagePasses.getQuality());
+		assertUpdatedItem(backstagePasses, -1, 0);
 	}
 	
 	@Test
@@ -161,8 +157,7 @@ public class GildedRoseTest {
 		ReasonableItem sulfuras = mindTheStore.getItems().get(0);
 		mindTheStore.updateQuality();
 		
-		assertEquals(0, sulfuras.getSellIn());
-		assertEquals(77, sulfuras.getQuality());
+		assertUpdatedItem(sulfuras, 0, 77);
 	}
 	
 	//XXX unit-test combinations of items?
@@ -177,8 +172,7 @@ public class GildedRoseTest {
 		ReasonableItem cake = mindTheStore.getItems().get(0);
 		mindTheStore.updateQuality();
 		
-		assertEquals(6, cake.getSellIn());
-		assertEquals(13, cake.getQuality());
+		assertUpdatedItem(cake, 6, 13);
 	}
 	
 	@Test
@@ -191,8 +185,7 @@ public class GildedRoseTest {
 		mindTheStore.updateQuality();
 		mindTheStore.updateQuality();
 		
-		assertEquals(-1, cake.getSellIn());
-		assertEquals(3, cake.getQuality());
+		assertUpdatedItem(cake, -1, 3);
 	}
 	
 	@Test
