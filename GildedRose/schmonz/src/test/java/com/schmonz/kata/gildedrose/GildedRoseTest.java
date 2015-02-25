@@ -74,7 +74,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOneBrie() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Aged Brie", 5, 7));
+		customItems.add(new Item(ReasonableItem.AGED_BRIE, 5, 7));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
@@ -86,7 +86,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOneBriePastSellByDate() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Aged Brie", 2, 0));
+		customItems.add(new Item(ReasonableItem.AGED_BRIE, 2, 0));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
@@ -100,7 +100,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOneBriePastSellByDateToMaxQuality() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Aged Brie", 2, 48));
+		customItems.add(new Item(ReasonableItem.AGED_BRIE, 2, 48));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
@@ -114,7 +114,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOneBriePastSellByDateToMaxQualityUnlessInexact() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Aged Brie", 2, 47));
+		customItems.add(new Item(ReasonableItem.AGED_BRIE, 2, 47));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem agedBrie = mindTheStore.getItems().get(0);
@@ -128,7 +128,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOnePasses() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 11, 13));
+		customItems.add(new Item(ReasonableItem.BACKSTAGE_PASSES, 11, 13));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
@@ -140,7 +140,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOnePassesPast10DaysLeft() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 11, 13));
+		customItems.add(new Item(ReasonableItem.BACKSTAGE_PASSES, 11, 13));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
@@ -153,7 +153,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOnePassesPast5DaysLeft() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 6, 13));
+		customItems.add(new Item(ReasonableItem.BACKSTAGE_PASSES, 6, 13));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
@@ -166,7 +166,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOnePassesPast5DaysLeftToMaxQuality() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 3, 47));
+		customItems.add(new Item(ReasonableItem.BACKSTAGE_PASSES, 3, 47));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
@@ -179,7 +179,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOnePassesPastSellByDate() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Backstage passes to a TAFKAL80ETC concert", 1, 13));
+		customItems.add(new Item(ReasonableItem.BACKSTAGE_PASSES, 1, 13));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem backstagePasses = mindTheStore.getItems().get(0);
@@ -192,7 +192,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOneSulfuras() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Sulfuras, Hand of Ragnaros", 0, 77));
+		customItems.add(new Item(ReasonableItem.SULFURAS, 0, 77));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem sulfuras = mindTheStore.getItems().get(0);
@@ -204,7 +204,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOneManaCake() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Conjured Mana Cake", 7, 15));
+		customItems.add(new Item(ReasonableItem.MANA_CAKE, 7, 15));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem cake = mindTheStore.getItems().get(0);
@@ -216,7 +216,7 @@ public class GildedRoseTest {
 	@Test
 	public void updateOneManaCakePastSellByDate() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Conjured Mana Cake", 1, 9));
+		customItems.add(new Item(ReasonableItem.MANA_CAKE, 1, 9));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		ReasonableItem cake = mindTheStore.getItems().get(0);
@@ -229,9 +229,9 @@ public class GildedRoseTest {
 	@Test
 	public void updateSeveralItemsAsTypical() {
 		List<Item> customItems = new ArrayList<Item>();
-		customItems.add(new Item("Aged Brie", 5, 7));
+		customItems.add(new Item(ReasonableItem.AGED_BRIE, 5, 7));
 		customItems.add(new Item("Nothing Special", 11, 17));
-		customItems.add(new Item("Conjured Mana Cake", 7, 15));
+		customItems.add(new Item(ReasonableItem.MANA_CAKE, 7, 15));
 		
 		GildedRose mindTheStore = new GildedRose(customItems);
 		mindTheStore.updateQuality();

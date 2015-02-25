@@ -3,18 +3,23 @@ package com.schmonz.kata.gildedrose;
 public class ReasonableItem {
 	private Item item;
 	protected int qualityIncrement;
-
+	
 	public static final int QUALITY_MAX = 50;
 	public static final int QUALITY_MIN = 0;
+	
+	public static final String AGED_BRIE = "Aged Brie";
+	public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+	public static final String MANA_CAKE = "Conjured Mana Cake";
+	public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
 	public static ReasonableItem create(Item item) {
-		if ("Aged Brie".equals(item.getName())) {
+		if (AGED_BRIE.equals(item.getName())) {
 			return new Brie(item);
-		} else if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
+		} else if (BACKSTAGE_PASSES.equals(item.getName())) {
 			return new Passes(item);
-		} else if ("Conjured Mana Cake".equals(item.getName())) {
+		} else if (MANA_CAKE.equals(item.getName())) {
 			return new ManaCake(item);
-		} else if ("Sulfuras, Hand of Ragnaros".equals(item.getName())) {
+		} else if (SULFURAS.equals(item.getName())) {
 			return new Sulfuras(item);
 		} else {
 			return new ReasonableItem(item);
