@@ -225,7 +225,19 @@ public class GildedRoseTest {
 		
 		assertUpdatedItem(cake, -1, 3);
 	}
+	
+	@Test
+	public void updateSeveralItemsAsTypical() {
+		List<Item> customItems = new ArrayList<Item>();
+		customItems.add(new Item("Aged Brie", 5, 7));
+		customItems.add(new Item("Nothing Special", 11, 17));
+		customItems.add(new Item("Conjured Mana Cake", 7, 15));
+		
+		GildedRose mindTheStore = new GildedRose(customItems);
+		mindTheStore.updateQuality();
+		
+		assertUpdatedItem(mindTheStore.getItems().get(0), 4, 8);
+		assertUpdatedItem(mindTheStore.getItems().get(1), 10, 16);
+		assertUpdatedItem(mindTheStore.getItems().get(2), 6, 13);
+	}
 }
-
-//XXX unit-test combinations of items?
-
