@@ -7,12 +7,10 @@ import java.util.stream.Collectors;
 public class GildedRose {
 
 	private List<Item> items;
-	
 	private List<ReasonableItem> reasonableItems;
 
 	public GildedRose() {
-		items = defaultItems();
-		this.reasonableItems = items2reasonable(items);
+		this.reasonableItems = items2reasonable(items = defaultItems());
 	}
 	
 	public GildedRose(List<Item> someItems) {
@@ -31,21 +29,16 @@ public class GildedRose {
 	}
 	
 	private List<ReasonableItem> items2reasonable(List<Item> someItems) {
-		return someItems.stream().map(
-				o -> ReasonableItem.create(o)
-		).collect(Collectors.toList());
+		return someItems.stream().map(o -> ReasonableItem.create(o)).collect(Collectors.toList());
 	}
 	
 	public static void main(String[] args) {
 		System.out.println("OMGHAI!");
-
 		new GildedRose().updateQuality();
 	}
 	
 	public void updateQuality() {
-		for (ReasonableItem each : reasonableItems) {
-			each.updateQuality();
-		}
+		reasonableItems.stream().forEach(o -> o.updateQuality());
 	}
 
 	public List<ReasonableItem> getItems() {
