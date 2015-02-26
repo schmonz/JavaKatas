@@ -35,22 +35,18 @@ public class ReasonableItem {
 		return item.getSellIn();
 	}
 
-	public void setQuality(int quality) {
-		item.setQuality(quality);
+	public void setSellIn(int sellIn) {
+		item.setSellIn(sellIn);
 	}
 
 	public int getQuality() {
 		return item.getQuality();
 	}
 
-	public void setSellIn(int sellIn) {
-		item.setSellIn(sellIn);
+	public void setQuality(int quality) {
+		item.setQuality(quality);
 	}
 
-	public String getName() {
-		return item.getName();
-	}
-	
 	public void updateQuality() {
 		decrementSellBy();
 		updateQualityIncrement();
