@@ -11,6 +11,7 @@ public class RedPencilTests {
 	@Before
 	public void setup() {
 		item = new Item(43.21);
+		item.letSomeDaysPass(29);
 	}
 
 	@Test
@@ -26,6 +27,7 @@ public class RedPencilTests {
 	
 	@Test
 	public void priceReducedJustEnough() {
+		item.letSomeDaysPass(1);
 		item.setPrice(41.04);
 		assertTrue(item.isRedPenciled());
 	}
@@ -38,16 +40,23 @@ public class RedPencilTests {
 	
 	@Test
 	public void priceReducedJustBarelyNotTooMuch() {
+		item.letSomeDaysPass(1);
 		item.setPrice(30.25);
 		assertTrue(item.isRedPenciled());
 	}
 
-//	@Test
-//	public void priceReducedTooRecently() {
-//		// XXX less than 30 days ago
-//		item.setPrice(36.99);
-//		assertFalse(item.isRedPenciled());
-//	}
+	@Test
+	public void priceReducedEnoughButTooRecently() {
+		item.setPrice(36.99);
+		assertFalse(item.isRedPenciled());
+	}
+	
+	@Test
+	public void priceReducedEnoughAndNotTooRecently() {
+		item.letSomeDaysPass(1);
+		item.setPrice(36.99);
+		assertTrue(item.isRedPenciled());
+	}
 	
 }
 
