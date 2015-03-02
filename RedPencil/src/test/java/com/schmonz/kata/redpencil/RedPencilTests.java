@@ -2,15 +2,53 @@ package com.schmonz.kata.redpencil;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class RedPencilTests {
-
-	@Test
-	public void test() {
-		assertNotNull(new RedPencil());
+	private Item item;
+	
+	@Before
+	public void setup() {
+		item = new Item(43.21);
 	}
 
+	@Test
+	public void initialStateIsNotRedPencil() {
+		assertFalse(item.isRedPenciled());
+	}
+	
+	@Test
+	public void priceReducedButNotEnough() {
+		item.setPrice(41.05);
+		assertFalse(item.isRedPenciled());
+	}
+	
+	@Test
+	public void priceReducedJustEnough() {
+		item.setPrice(41.04);
+		assertTrue(item.isRedPenciled());
+	}
+	
+	@Test
+	public void priceReducedButTooMuch() {
+		item.setPrice(30.24);
+		assertFalse(item.isRedPenciled());
+	}
+	
+	@Test
+	public void priceReducedJustBarelyNotTooMuch() {
+		item.setPrice(30.25);
+		assertTrue(item.isRedPenciled());
+	}
+
+//	@Test
+//	public void priceReducedTooRecently() {
+//		// XXX less than 30 days ago
+//		item.setPrice(36.99);
+//		assertFalse(item.isRedPenciled());
+//	}
+	
 }
 
 /*
@@ -26,10 +64,6 @@ are activated and deactivated automatically.
 
 The scope of the Code Kata is the implementations of the rules for
 activation and end of red pencil promotions.
-
-- A red pencil promotion starts due to a price reduction. The
-  price has to be reduced by at least 5% but at most by 30%
-  and the previous price had to be stable for at least 30 days.
 
 - A red pencil promotion lasts 30 days as the maximum length.
 
