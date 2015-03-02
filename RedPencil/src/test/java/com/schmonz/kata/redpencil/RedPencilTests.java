@@ -21,6 +21,7 @@ public class RedPencilTests {
 	
 	@Test
 	public void priceReducedButNotEnough() {
+		item.letSomeDaysPass(1);
 		item.setPrice(41.05);
 		assertFalse(item.isRedPenciled());
 	}
@@ -34,6 +35,7 @@ public class RedPencilTests {
 	
 	@Test
 	public void priceReducedButTooMuch() {
+		item.letSomeDaysPass(1);
 		item.setPrice(30.24);
 		assertFalse(item.isRedPenciled());
 	}
@@ -47,15 +49,9 @@ public class RedPencilTests {
 
 	@Test
 	public void priceReducedEnoughButTooRecently() {
+		item.letSomeDaysPass(0);
 		item.setPrice(36.99);
 		assertFalse(item.isRedPenciled());
-	}
-	
-	@Test
-	public void priceReducedEnoughAndNotTooRecently() {
-		item.letSomeDaysPass(1);
-		item.setPrice(36.99);
-		assertTrue(item.isRedPenciled());
 	}
 	
 }
