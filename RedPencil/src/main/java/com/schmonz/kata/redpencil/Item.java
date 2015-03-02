@@ -13,8 +13,8 @@ public class Item {
 	}
 
 	public void setPrice(double newPrice) {
-		double percentChange = 100 * (price - newPrice) / price;
-		if (percentChange >= 5 && percentChange <= 30) {
+		double percentChange = 100 * (newPrice - price) / price;
+		if (-30 <= percentChange && percentChange <= -5) {
 			isRedPenciled = true;
 		}
 		price = newPrice;
