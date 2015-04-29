@@ -1,24 +1,20 @@
-# _Stolen verbatim from <http://cyber-dojo.org>_
-# 
-#     Given a letter print a diamond starting with 'A'
-#     with the supplied letter at the widest point.
-#     
-#     For example: print-diamond 'E' prints
-#     
-#         A
-#        B B
-#       C   C
-#      D     D
-#     E       E
-#      D     D
-#       C   C
-#        B B
-#         A
-#     
-#     For example: print-diamond 'C' prints
-#     
-#       A
-#      B B
-#     C   C
-#      B B
-#       A
+Feature: Print a diamond starting with 'A'
+  With the supplied letter at the widest point
+
+  Scenario: 'A'
+    Given the letter A
+    When printing a diamond
+    Then it should look like
+      """
+      A
+      """
+
+  Scenario: 'B'
+    Given the letter B
+    When printing a diamond
+    Then it should look like
+      """
+       A
+      B B
+       A
+      """
