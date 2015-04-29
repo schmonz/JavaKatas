@@ -4,7 +4,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 
-public class PrintDiamondSteps {
+public class DiamondSteps {
 	String letter;
 	String actualOutput;
 
