@@ -18,3 +18,19 @@ Feature: Print a diamond starting with 'A'
       B B
        A
       """
+
+  Scenario: first line of 'C'
+    Given the letter C
+    When printing the first line
+    Then it should look like
+      """
+        A
+      """
+
+  Scenario: first line of 'E'
+    Given the letter E
+    When printing the first line
+    Then it should look like
+      """
+          A
+      """

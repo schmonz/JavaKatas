@@ -19,9 +19,22 @@ public class DiamondSteps {
 		actualOutput = diamond.print(letter);
 	}
 	
+	@When("^printing the first line$")
+	public void printing_the_first_line() throws Throwable {
+		Diamond diamond = new Diamond();
+		actualOutput = diamond.printFirstLine(letter);
+	}
+	
 	@Then("^it should look like$")
 	public void it_should_look_like(String expectedOutput) throws Throwable {
 		assertEquals(expectedOutput, actualOutput);
 	}
+	
+	//seems like the number of spaces preceding "A"
+	// is one less than the position of the given letter
+	// in the alphabet
+	//to test this, I need to know:
+	// - given a letter of the alphabet, what position is it?
+	// - given the same letter, what does our first line look like?
 		
 }

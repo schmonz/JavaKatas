@@ -12,4 +12,22 @@ public class Diamond {
 		}
 	}
 
+	public String printFirstLine(String letter) {
+		StringBuffer firstLine = new StringBuffer();
+
+		int howManyLeadingSpaces = positionInAlphabet(letter) - 1;
+		for (int i = 0; i < howManyLeadingSpaces; i++) {
+			firstLine.append(' ');
+		}
+		firstLine.append('A');
+		
+		return firstLine.toString();
+	}
+
+	private int positionInAlphabet(String letter) {
+		char justTheLetter = letter.toCharArray()[0];
+		int letterPositionMaybe = (int)justTheLetter - 64;
+		return letterPositionMaybe;
+	}
+
 }
