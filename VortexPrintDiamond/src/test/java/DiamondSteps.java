@@ -22,8 +22,28 @@ public class DiamondSteps {
 	@When("^printing the first line$")
 	public void printing_the_first_line() throws Throwable {
 		Diamond diamond = new Diamond();
-		actualOutput = diamond.printFirstLine(letter);
+		actualOutput = diamond.printLine(1, letter, "A");
 	}
+	
+	@When("^printing the second line$")
+	public void printing_the_second_line() throws Throwable {
+		Diamond diamond = new Diamond();
+		actualOutput = diamond.printLine(2, letter, "B B");
+	}
+
+	@When("^printing the second-to-last line$")
+	public void printing_the_second_to_last_line() throws Throwable {
+		Diamond diamond = new Diamond();
+		actualOutput = diamond.printLine(2, letter, "B B");;
+	}
+	
+	@When("^printing the last line$")
+	public void printing_the_last_line() throws Throwable {
+		Diamond diamond = new Diamond();
+		actualOutput = diamond.printLine(1, letter, "A");
+	}
+
+
 	
 	@Then("^it should look like$")
 	public void it_should_look_like(String expectedOutput) throws Throwable {

@@ -34,3 +34,59 @@ Feature: Print a diamond starting with 'A'
       """
           A
       """
+
+  Scenario: last line of 'E'
+    Given the letter E
+    When printing the last line
+    Then it should look like
+      """
+          A
+      """
+
+  Scenario: second line of 'E'
+    Given the letter E
+    When printing the second line
+    Then it should look like
+      """
+         B B
+      """
+
+  Scenario: second-to-last line of 'E'
+    Given the letter E
+    When printing the second-to-last line
+    Then it should look like
+      """
+         B B
+      """
+
+  Scenario: second line of 'C'
+    Given the letter C
+    When printing the second line
+    Then it should look like
+      """
+       B B
+      """
+
+  Scenario: second-to-last line of 'C'
+    Given the letter C
+    When printing the second-to-last line
+    Then it should look like
+      """
+       B B
+      """
+
+  Scenario: second line of 'G'
+    Given the letter G
+    When printing the second line
+    Then it should look like
+      """
+           B B
+      """
+
+  Scenario: second-to-last line of 'G'
+    Given the letter G
+    When printing the second-to-last line
+    Then it should look like
+      """
+           B B
+      """

@@ -11,15 +11,15 @@ public class Diamond {
 			return A_DIAMOND;
 		}
 	}
-
-	public String printFirstLine(String letter) {
+	
+	public String printLine(int whichLine, String letter, String whatToPrint) {
 		StringBuffer firstLine = new StringBuffer();
 
-		int howManyLeadingSpaces = positionInAlphabet(letter) - 1;
+		int howManyLeadingSpaces = positionInAlphabet(letter) - whichLine;
 		for (int i = 0; i < howManyLeadingSpaces; i++) {
 			firstLine.append(' ');
 		}
-		firstLine.append('A');
+		firstLine.append(whatToPrint);
 		
 		return firstLine.toString();
 	}
