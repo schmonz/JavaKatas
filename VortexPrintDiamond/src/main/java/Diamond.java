@@ -1,14 +1,13 @@
 
 public class Diamond {
-	
-	private static final String A_DIAMOND = "A";
-	private static final String B_DIAMOND = " A\nB B\n A";
 
 	public String print(String letter) {
 		if ("B".equals(letter)) {
-			return B_DIAMOND;
+			return printLine(1, "A", " A\n")
+				+ printLine(2, "B", "B B\n")
+				+ printLine(1, "A", " A");
 		} else {
-			return A_DIAMOND;
+			return printLine(1, "A", "A");
 		}
 	}
 	
